@@ -1,0 +1,17 @@
+.nav {
+    grid-area: nav;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: start;
+  }
+.nav a {
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav a .active {
+    color: black;
+}

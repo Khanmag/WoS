@@ -1,0 +1,15 @@
+
+.postcreatorwrapper {
+    min-height: 60px;
+    /*border: 1px solid black;*/
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+}
+.postcreatorwrapper input {
+    border: none;
+    min-width: 400px;
+}
+.postcreatorwrapper button {
+    background-color: #cfcff1;
+    border: none;
+}

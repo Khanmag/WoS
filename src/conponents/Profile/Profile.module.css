@@ -1,0 +1,12 @@
+.profile {
+    background-color: bisque;
+}
+
+.banner {
+    max-height: 180px;
+}
+
+.banner img {
+    width: 100%;
+    max-height: 200px;
+}

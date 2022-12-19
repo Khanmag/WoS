@@ -1,0 +1,10 @@
+img {
+    max-height: 50px;
+}
+.container {
+    max-width: 400px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
