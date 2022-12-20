@@ -7,11 +7,11 @@ const postsData = [
     {id: '1', text: 'I am React GOD!!'},
 ]
 
-const PostsAll = () => {
+const PostsAll = ({posts}) => {
     return (
         <div>
             {
-                postsData.map( ({text}) => {
+                posts.map( ({text}) => {
                     return <Post text={text} />
                 })
             }

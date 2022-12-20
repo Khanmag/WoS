@@ -1,14 +1,27 @@
 import st from './Navbar.module.css'
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
+const createNavlink = (name, link) => {
+    return (
+        <NavLink to={link}
+                 className={({isActive}) => isActive ? (st.activelink + " " + st.navlink) : st.navlink}>
+            {name}
+        </NavLink>
+    )
+}
+const navbarData = [
+    {name: "Profile", link: "/profile"},
+    {name: "Dialogs", link: "/dialogs"},
+    {name: "News", link: "/news"},
+    {name: "Music", link: "/music"},
+    {name: "Setting", link: "/settings"},
+]
 const Navbar = () => {
     return (
         <nav className={st.nav}>
-            <Link activeClassName={st.active} to="/profile">Profile</Link>
-            <Link to="/dialogs">Dialogs</Link>
-            <Link to="/news">News</Link>
-            <Link to="/music">Music</Link>
-            <Link to="/settings">Setting</Link>
+            {navbarData.map((item) => (
+                createNavlink(item.name, item.link)
+            ))}
         </nav>
     )
 }

@@ -9,15 +9,15 @@ import News from "./conponents/News/News";
 import Settings from "./conponents/Settings/Settings";
 import Music from "./conponents/Music/Music";
 
-const App = () => {
+const App = ({state}) => {
     return (
         <div className={st.wrapper}>
             <Header/>
             <Navbar/>
             <Routes>
-                <Route path={'/'} element={<Profile/>}/>
-                <Route path={'/profile'} element={<Profile/>}/>
-                <Route path={'/dialogs/*'} element={<Dialogs/>}/>
+                <Route path={'/'} element={<Profile posts={state.posts} />}/>
+                <Route path={'/profile'} element={<Profile posts={state.posts} />}/>
+                <Route path={'/dialogs/*'} element={<Dialogs dialogsPage={state.dialogsPage} messages={state.messages}/>}/>
                 {/*<Route path={'*'} element={<News/>}/>*/}
             </Routes>
             {/*<div className={st.content}>*/}

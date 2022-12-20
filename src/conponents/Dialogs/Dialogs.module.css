@@ -8,7 +8,17 @@
     flex-direction: column;
 
 }
+.singledialogwrapper {
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+}
+.singledialogwrapper img {
+    max-height: 50px;
+    max-width: 50px;
+}
 .dialog {
+    /*min-width: 80px;*/
+    max-width: 100%;
     color: #3498db;
     text-decoration: none;
     background-color: #f5f5ff;

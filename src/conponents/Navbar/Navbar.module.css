@@ -6,12 +6,12 @@
     /*justify-content: center;*/
     align-items: start;
   }
-.nav a {
+.navlink {
     padding: 5px;
     color: white;
     text-decoration: none;
 }
 
-.nav a .active {
+.activelink {
     color: black;
 }
