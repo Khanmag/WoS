@@ -1,6 +1,7 @@
 import st from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import React from "react";
+import Messages from "./Messages";
 
 
 const Dialog = ({name, id, avatar}) => {
@@ -17,29 +18,20 @@ const Dialog = ({name, id, avatar}) => {
 }
 
 
-const Message = ({text}) => {
-    return (
-        <div className={st.message}>{text}</div>
-    )
-}
-
-const Dialogs = ({dialogsPage, messages}) => {
+const Dialogs = ({store}) => {
     return (
         <div className={st.dialogswrapper}>
             <div className={st.alldialogs}>
                 {
-                    dialogsPage.map( ({name,id, avatar}) => {
-                        return <Dialog name={name} id={id} avatar={avatar} />
+                    store.state.dialogsPage.dialogs.map( ({name,id, avatar}) => {
+                        return <Dialog name={name} id={id} key={id} avatar={avatar} />
                     })
                 }
             </div>
-            <div className={st.allmessages}>
-                {
-                    messages.map( ({text}) => {
-                        return <Message text={text} />
-                    })
-                }
-            </div>
+            <Messages newMessageText={store.state.dialogsPage.newMessageText}
+                      newMessageTextChanger={store.newMessageTextChanger}
+                      addNewMessage={store.addNewMessage}
+                      messages={store.state.messages}/>
         </div>
     )
 }

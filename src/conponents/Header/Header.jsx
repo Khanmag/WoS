@@ -12,7 +12,7 @@ const Header = () => {
                     <a href="#">Blog</a>
                     <a href="#">Portefolio</a>
                     <a href="#">Contact</a>
-                    <div class={st.animation + " " + st.startHome}></div>
+                    <div className={st.animation + " " + st.startHome}></div>
                 </nav>
             </div>
         </header>

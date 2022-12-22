@@ -11,8 +11,8 @@ const PostsAll = ({posts}) => {
     return (
         <div>
             {
-                posts.map( ({text}) => {
-                    return <Post text={text} />
+                posts.map( ({text},i) => {
+                    return <Post text={text} key={i} />
                 })
             }
         </div>

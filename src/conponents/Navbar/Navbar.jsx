@@ -1,9 +1,9 @@
 import st from './Navbar.module.css'
 import {Link, NavLink} from "react-router-dom";
 
-const createNavlink = (name, link) => {
+const createNavlink = (name, link, i) => {
     return (
-        <NavLink to={link}
+        <NavLink to={link} key={i}
                  className={({isActive}) => isActive ? (st.activelink + " " + st.navlink) : st.navlink}>
             {name}
         </NavLink>
@@ -19,8 +19,8 @@ const navbarData = [
 const Navbar = () => {
     return (
         <nav className={st.nav}>
-            {navbarData.map((item) => (
-                createNavlink(item.name, item.link)
+            {navbarData.map((item, i) => (
+                createNavlink(item.name, item.link, i)
             ))}
         </nav>
     )

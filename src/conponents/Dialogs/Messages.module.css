@@ -1,0 +1,41 @@
+.messageswrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.allmessages {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+}
+.message {
+    max-width: 70%;
+    min-width: 10%;
+    text-align: right;
+    /*border: 1px solid rgba(128, 128, 128, 0.09);*/
+    background-color: rgba(128, 128, 128, 0.07);
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+
+.newmessagecreator {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+.newmessagecreator textarea {
+    background-color: white;
+    border: none;
+    border: 0.5px solid rgba(128, 128, 128, 0.32);
+    padding: 5px 10px;
+    resize: none;
+}
+.newmessagecreator textarea:focus {
+    outline: none;
+}
+.newmessagecreator button {
+    background-color: #cfcff1;
+    border: none;
+}
