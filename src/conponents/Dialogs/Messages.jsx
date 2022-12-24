@@ -1,5 +1,6 @@
 import st from "./Messages.module.css";
 import React from "react";
+import {addNewMessageAC, changeNewMessageTextAC} from "../../redux/dialogsReducer";
 
 
 const Message = ({text}) => {
@@ -12,13 +13,7 @@ const Message = ({text}) => {
 }
 
 
-// const addNewMessage = () => {
-//     let text = newMessageText.current.value
-//     alert(text)
-// }
-
-const Messages = ({messages, addNewMessage, newMessageText, newMessageTextChanger}) => {
-    const newMessageTextRef = React.createRef()
+const Messages = ({messages, newMessageText, addNewMessage, changeNewMessageText}) => {
 
     return (
         <div className={st.messageswrapper}>
@@ -30,8 +25,7 @@ const Messages = ({messages, addNewMessage, newMessageText, newMessageTextChange
                 }
             </div>
             <div className={st.newmessagecreator}>
-                <textarea onChange={() => {newMessageTextChanger(newMessageTextRef.current.value)}}
-                          ref={newMessageTextRef} value={newMessageText}/>
+                <textarea onChange={(e) => changeNewMessageText(e.target.value)} value={newMessageText}/>
                 <button onClick={addNewMessage}>Send</button>
             </div>
         </div>

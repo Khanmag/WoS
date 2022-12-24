@@ -52,29 +52,28 @@ const store = {
     subscribe(observer) {
         store.rerenderEntireTree = observer
     },
-    newMessageTextChanger(text) {
-        store.state.dialogsPage.newMessageText = text
-        store.rerenderEntireTree()
-    },
-    addNewMessage() {
-        store.state.messages.push({
-            text: store.state.dialogsPage.newMessageText,
-            id: 'sda'
-        })
-        store.rerenderEntireTree()
-    },
-    addPost() {
-        store.state.profileData.posts.push({
-            id: '5',
-            text: store.state.profileData.newPostText,
-        })
-        store.state.profileData.newPostText = ''
-        store.rerenderEntireTree()
-    },
-    newPostTextChanger(text) {
-        store.state.profileData.newPostText = text
-        store.rerenderEntireTree()
-    },
+    dispatch(action) {
+        if (action.type === 'ADD-NEW-POST') {
+            this.state.profileData.posts.push({
+                id: '5',
+                text: this.state.profileData.newPostText,
+            })
+            this.state.profileData.newPostText = ''
+            this.rerenderEntireTree()
+        } else if (action.type === 'CHANGE-NEW-POST') {
+            this.state.profileData.newPostText = action.text
+            this.rerenderEntireTree()
+        } else if (action.type === 'CHANGE-NEW-MESSAGE') {
+            this.state.dialogsPage.newMessageText = action.text
+            this.rerenderEntireTree()
+        } else if (action.type === 'ADD-NEW-MESSAGE') {
+            this.state.messages.push({
+                text: this.state.dialogsPage.newMessageText,
+                id: 'sda'
+            })
+            this.rerenderEntireTree()
+        }
+    }
 }
 
 

@@ -8,16 +8,30 @@ import React from 'react'
 import News from "./conponents/News/News";
 import Settings from "./conponents/Settings/Settings";
 import Music from "./conponents/Music/Music";
+import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
 
-const App = ({store}) => {
+
+const App = ({state, dispatch}) => {
+    for (let i = 1; i < 10; ++i) {
+        let x = i++
+        console.log('x = ' + x + ', i = ' + i)
+    }
+    for (let i = 1; i < 10; ++i) {
+        let x = ++i
+        console.log('x = ' + x + ', i = ' + i)
+    }
     return (
         <div className={st.wrapper}>
             <Header/>
             <Navbar/>
             <Routes>
-                <Route path={'/'} element={<Profile store={store}/>}/>
-                <Route path={'/profile'} element={<Profile store={store}/>}/>
-                <Route path={'/dialogs/*'} element={<Dialogs store={store}/>}/>
+                <Route path={'/'} element={<Profile profileData={state.profilePage}
+                                                    dispatch={dispatch}/>}/>
+                <Route path={'/profile'} element={<Profile profileData={state.profilePage}
+                                                           dispatch={dispatch}/>}/>
+                {/*<Route path={'/dialogs/*'} element={<Dialogs dialogsPage={state.dialogsPage}*/}
+                {/*                                             dispatch={dispatch}/>}/>*/}
+                <Route path={'/dialogs/*'} element={<DialogsContainer />}/>
                 <Route path={'*'} element={<News/>}/>
             </Routes>
         </div>

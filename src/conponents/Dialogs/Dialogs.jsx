@@ -7,7 +7,7 @@ import Messages from "./Messages";
 const Dialog = ({name, id, avatar}) => {
     return(
         <div className={st.singledialogwrapper}>
-            <img src={avatar}/>
+            <img src={avatar} alt='...'/>
             <NavLink to={'/dialogs/' + id}
                      className={({isActive}) => isActive ? (st.dialogactive + " " + st.dialog) : st.dialog}>
                 {name}
@@ -18,20 +18,20 @@ const Dialog = ({name, id, avatar}) => {
 }
 
 
-const Dialogs = ({store}) => {
+const Dialogs = ({dialogs, messages, newMessageText, addNewMessage, changeNewMessageText}) => {
+
     return (
         <div className={st.dialogswrapper}>
             <div className={st.alldialogs}>
                 {
-                    store.state.dialogsPage.dialogs.map( ({name,id, avatar}) => {
+                    dialogs.map( ({name,id, avatar}) => {
                         return <Dialog name={name} id={id} key={id} avatar={avatar} />
                     })
                 }
             </div>
-            <Messages newMessageText={store.state.dialogsPage.newMessageText}
-                      newMessageTextChanger={store.newMessageTextChanger}
-                      addNewMessage={store.addNewMessage}
-                      messages={store.state.messages}/>
+            <Messages newMessageText={newMessageText}
+                      addNewMessage={addNewMessage} changeNewMessageText={changeNewMessageText}
+                      messages={messages}/>
         </div>
     )
 }
