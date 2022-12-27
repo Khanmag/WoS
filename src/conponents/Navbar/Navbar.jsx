@@ -12,7 +12,7 @@ const createNavlink = (name, link, i) => {
 const navbarData = [
     {name: "Profile", link: "/profile"},
     {name: "Dialogs", link: "/dialogs"},
-    {name: "News", link: "/news"},
+    {name: "Users", link: "/users"},
     {name: "Music", link: "/music"},
     {name: "Setting", link: "/settings"},
 ]

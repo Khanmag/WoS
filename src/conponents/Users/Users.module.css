@@ -1,0 +1,56 @@
+.user_container {
+    width: 80%;
+    max-height: 100px;
+    background-color: rgba(238, 232, 170, 0.45);
+    border: 1px solid grey;
+    display: grid;
+    grid-template-columns: 2fr 11fr;
+    grid-template-rows: 2fr 7fr;
+    grid-template-areas: 'a d' 'b d';
+}
+.user_avatar {
+    grid-area: a;
+    width: 98%;
+    height: 98%;
+    padding: 2%;
+}
+.user_avatar img {
+    max-height: 100%;
+    max-width: 100%;
+}
+.user_description {
+    grid-area: d;
+}
+.following_button {
+    grid-area: b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.following_button button {
+    border: none;
+    border-radius: 5px;
+    background-color: #9999d9;
+    color: white;
+    font-family: Comfortaa;
+}
+.paginator_wrapper {
+    margin: 0 auto;
+    max-width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.paginator_wrapper a {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 30px;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+.currentPage {
+    background-color: black;
+    color: white;
+}
