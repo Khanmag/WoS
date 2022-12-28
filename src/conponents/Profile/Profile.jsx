@@ -3,12 +3,12 @@ import PostsAll from './Posts/PostsAll'
 import st from './Profile.module.css'
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 
-const Profile = ({profileData, dispatch}) => {
+const Profile = ({profilePage, dispatch}) => {
     return (
         <div className={st.profile}>
-            <PersonalInfo />
-            <PostCreator newPostText={profileData.newPostText} dispatch={dispatch}/>
-            <PostsAll posts={profileData.posts} />
+            <PersonalInfo profileInfo={profilePage.profileInfo}/>
+            <PostCreator newPostText={profilePage.newPostText} dispatch={dispatch}/>
+            <PostsAll posts={profilePage.posts} />
         </div>
     )
 }

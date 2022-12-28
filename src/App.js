@@ -10,6 +10,7 @@ import Music from "./conponents/Music/Music";
 import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
 import Users from "./conponents/Users/Users";
 import UsersContainer from "./conponents/Users/UsersContainer";
+import ProfileContainer from "./conponents/Profile/ProfileContainer";
 
 
 const App = ({state, dispatch}) => {
@@ -18,9 +19,9 @@ const App = ({state, dispatch}) => {
             <Header/>
             <Navbar/>
             <Routes>
-                <Route path={'/'} element={<Profile profileData={state.profilePage}
+                <Route path={'/'} element={<ProfileContainer profilePage={state.profilePage}
                                                     dispatch={dispatch}/>}/>
-                <Route path={'/profile'} element={<Profile profileData={state.profilePage}
+                <Route path={'/profile/:id'} element={<ProfileContainer profilePage={state.profilePage}
                                                            dispatch={dispatch}/>}/>
                 <Route path={'/dialogs/*'} element={<DialogsContainer />}/>
                 <Route path={'/users'} element={<UsersContainer />}/>

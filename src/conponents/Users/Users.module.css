@@ -54,3 +54,10 @@
     background-color: black;
     color: white;
 }
+.user_full_name, .user_status {
+    margin: 5px;
+}
+.user_full_name a {
+    text-decoration: none;
+    color: rgba(29, 39, 101, 0.91);
+}
