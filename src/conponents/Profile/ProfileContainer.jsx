@@ -10,6 +10,9 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         this.props.dispatch(toggleIsFetchingAC())
         let userId = this.props.router.params.id
+        if (!userId) {
+            userId = 15
+        }
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
@@ -20,7 +23,6 @@ class ProfileContainer extends React.Component {
 
 
     render() {
-        console.log(this.props.router)
         return (<div>
             {
                 (this.props.profilePage.isFetching && this.props.profilePage.profileInfo)

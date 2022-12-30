@@ -11,9 +11,11 @@ class Users extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching()
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+                {
+                    withCredentials: true,
+                })
             .then(response => {
-                console.log(response.data.items)
                 this.props.setUsers(response.data.items);
                 this.props.toggleIsFetching()
                 // this.props.setTotalUsersCount(response.data.totalCount)
@@ -23,7 +25,10 @@ class Users extends React.Component {
     onCurrentPageChange = (pageNum) => {
         this.props.toggleIsFetching()
         this.props.setCurrentPage(pageNum)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`,
+            {
+                withCredentials: true,
+            })
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.setCurrentPage(pageNum)
@@ -34,10 +39,7 @@ class Users extends React.Component {
     }
 
     render() {
-
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-
-
         return (
             <div>
 
@@ -53,16 +55,13 @@ class Users extends React.Component {
                                      avatar={item.photos.small}
                                      userName={item.name}
                                      userStatus={item.status}
-                                     userLocation={item.location}
                                      isFollow={item.followed}
                         />
                     })}
-
             </div>
         )
     }
 }
-
 
 export default Users
 
@@ -76,7 +75,7 @@ const Paginator = ({pagesNum, onCurrentPageChange, currentPage}) => {
         <div className={st.paginator_wrapper}>
             {
                 pages.map(i => {
-                    return <a className={currentPage == i ? st.currentPage : ""}
+                    return <a key={i} className={currentPage == i ? st.currentPage : ""}
                               onClick={() => onCurrentPageChange(i)}>{i}</a>
                 })
             }
@@ -85,7 +84,7 @@ const Paginator = ({pagesNum, onCurrentPageChange, currentPage}) => {
 }
 
 
-const User = ({toggleFollowing, id, avatar, userName, userLocation, userStatus, isFollow}) => {
+const User = ({toggleFollowing, id, avatar, userName, userStatus, isFollow}) => {
     return (
         <div className={st.user_container}>
             <div className={st.user_avatar}>

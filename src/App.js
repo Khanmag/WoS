@@ -11,17 +11,18 @@ import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
 import Users from "./conponents/Users/Users";
 import UsersContainer from "./conponents/Users/UsersContainer";
 import ProfileContainer from "./conponents/Profile/ProfileContainer";
+import HeaderContainer from "./conponents/Header/HeaderContainer";
 
 
 const App = ({state, dispatch}) => {
     return (
         <div className={st.wrapper}>
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <Routes>
                 <Route path={'/'} element={<ProfileContainer profilePage={state.profilePage}
                                                     dispatch={dispatch}/>}/>
-                <Route path={'/profile/:id'} element={<ProfileContainer profilePage={state.profilePage}
+                <Route path={'/profile/:id?'} element={<ProfileContainer profilePage={state.profilePage}
                                                            dispatch={dispatch}/>}/>
                 <Route path={'/dialogs/*'} element={<DialogsContainer />}/>
                 <Route path={'/users'} element={<UsersContainer />}/>
