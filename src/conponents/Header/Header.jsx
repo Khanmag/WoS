@@ -1,5 +1,6 @@
 import React from 'react'
 import st from './Header.module.css'
+import {NavLink} from "react-router-dom";
 
 const Header = ({login, isAuth}) => {
     return (
@@ -8,7 +9,7 @@ const Header = ({login, isAuth}) => {
             {
                 isAuth
                 ? <div>{login}</div>
-                : <div>Log In</div>
+                : <NavLink to={'/login'}>Log In</NavLink>
             }
         </header>
     )

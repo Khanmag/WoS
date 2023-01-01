@@ -1,21 +1,12 @@
 import st from './Postcreator.module.css'
 import React from "react";
-import {addNewPostAC, changeNewPostTextAC} from "../../../redux/profileReducer";
 
 
-const PostCreator = ({dispatch, newPostText}) => {
-
-    const changeNewPostText = (e) => {
-        dispatch(changeNewPostTextAC(e.target.value))
-    }
-    const addPost = () => {
-        dispatch(addNewPostAC())
-    }
-
+const PostCreator = ({addNewPost, newPostText, changeNewPostText}) => {
     return (
-        <div className={st.postcreatorwrapper}>
-            <textarea value={newPostText} onChange={changeNewPostText}/>
-            <button onClick={addPost}>Add post</button>
+        <div className={st.post_creator_wrapper}>
+            <textarea value={newPostText} onChange={(e) => changeNewPostText(e.target.value)}/>
+            <button onClick={addNewPost}>Add post</button>
         </div>
     )
 }

@@ -1,13 +1,13 @@
 import {connect} from "react-redux";
 import Users from "./UsersC";
 import {
+    disableCurrentButton, enableCurrentButton,
+    followOnUser, followThunk, getUsersThunk,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
-    toggleFollowing,
-    toggleIsFetching,
+    toggleIsFetching, unfollowOnUser, unfollowThunk,
 } from "../../redux/userReducer";
-
 
 
 let mapStateToProps = (state) => {
@@ -17,20 +17,12 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingOnProcess: state.usersPage.followingOnProcess
     }
 }
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         toggleFollowing: (id) => dispatch(toggleFollowingAC(id)),
-//         setUsers: (users) => dispatch(setUsersAC(users)),
-//         setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
-//         setCurrentPage: (currentPage) => dispatch(setCurrentPageAC(currentPage)),
-//         toggleIsFetching: () => dispatch(toggleIsFetchingAC())
-//     }
-// }
 
-
-const UsersContainer = connect(mapStateToProps, {
-    toggleFollowing, setUsers, setTotalUsersCount, setCurrentPage, toggleIsFetching
+const UsersContainer = connect(mapStateToProps,
+    {setUsers, setTotalUsersCount, setCurrentPage, getUsersThunk, followThunk, unfollowThunk,
+        toggleIsFetching, followOnUser, unfollowOnUser, disableCurrentButton, enableCurrentButton
 })(Users)
 export default UsersContainer

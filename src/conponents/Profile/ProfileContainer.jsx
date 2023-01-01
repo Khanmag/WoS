@@ -1,34 +1,36 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
-import {setProfileInfoAC, toggleIsFetchingAC} from "../../redux/profileReducer";
+import {
+    addNewPost, toggleIsFetching,
+    changeNewPostText, getProfile, setProfileInfo,
+} from "../../redux/profileReducer";
 import Preloader from "../Preloader/Preloader";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {connect} from "react-redux";
 
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        this.props.dispatch(toggleIsFetchingAC())
+        this.props.toggleIsFetching()
         let userId = this.props.router.params.id
         if (!userId) {
             userId = 15
         }
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                this.props.dispatch(setProfileInfoAC(response.data))
-                this.props.dispatch(toggleIsFetchingAC())
-            })
+        this.props.getProfile(userId)
     }
 
 
     render() {
         return (<div>
             {
-                (this.props.profilePage.isFetching && this.props.profilePage.profileInfo)
+                (this.props.isFetching && this.props.profileInfo)
                     ? <Preloader/>
-                    : <Profile profilePage={this.props.profilePage}
-                               dispatch={this.props.dispatch}/>
+                    : <Profile posts={this.props.posts}
+                               profileInfo={this.props.profileInfo}
+                               changeNewPostText={this.props.changeNewPostText}
+                               addNewPost={this.props.addNewPost}
+                               newPostText={this.props.newPostText}
+                    />
             }
         </div>)
     }
@@ -49,4 +51,17 @@ function withRouter(Component) {
     return ComponentWithRouterProp;
 }
 
-export default withRouter(ProfileContainer)
+let mapStateToProps = (state) => {
+    return {
+        isFetching: state.profilePage.isFetching,
+        profileInfo: state.profilePage.profileInfo,
+        newPostText: state.profilePage.newPostText,
+        posts: state.profilePage.posts,
+    }
+}
+
+
+export default connect(mapStateToProps, {
+    changeNewPostText, addNewPost, getProfile,
+    toggleIsFetching, setProfileInfo,
+})(withRouter(ProfileContainer))

@@ -22,7 +22,7 @@ let rerenderEntireTree = (state) => {
     root.render(
         <BrowserRouter>
             <Provider store={store}>
-                <App state={state} dispatch={store.dispatch.bind(store)}/>
+                <App />
             </Provider>
         </BrowserRouter>
     );

@@ -1,5 +1,5 @@
 import st from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import React from "react";
 import Messages from "./Messages";
 
@@ -18,10 +18,11 @@ const Dialog = ({name, id, avatar}) => {
 }
 
 
-const Dialogs = ({dialogs, messages, newMessageText, addNewMessage, changeNewMessageText}) => {
+const Dialogs = ({dialogs, messages, newMessageText, addNewMessage, changeNewMessageText, isAuth}) => {
 
     return (
         <div className={st.dialogswrapper}>
+
             <div className={st.alldialogs}>
                 {
                     dialogs.map( ({name,id, avatar}) => {
@@ -29,6 +30,7 @@ const Dialogs = ({dialogs, messages, newMessageText, addNewMessage, changeNewMes
                     })
                 }
             </div>
+
             <Messages newMessageText={newMessageText}
                       addNewMessage={addNewMessage} changeNewMessageText={changeNewMessageText}
                       messages={messages}/>
