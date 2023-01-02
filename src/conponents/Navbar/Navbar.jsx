@@ -13,6 +13,7 @@ const navbarData = [
     {name: "Profile", link: "/profile"},
     {name: "Dialogs", link: "/dialogs"},
     {name: "Users", link: "/users"},
+    {name: "Login", link: "/login"},
     {name: "Music", link: "/music"},
     {name: "Setting", link: "/settings"},
 ]

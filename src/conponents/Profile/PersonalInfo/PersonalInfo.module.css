@@ -1,4 +1,4 @@
-.personalinfowrapper {
+.personal_info_wrapper {
 }
 .banner {
     max-height: 200px;
@@ -8,30 +8,27 @@
     max-height:  200px;
     object-fit: cover;
 }
-.avaplusdescr {
+.avatar_plus_description {
     display: grid;
     grid-template-columns: 3fr 7fr;
-    grid-gap: 15px;
-    /*width: 100%;*/
-    height: 200px;
-    transform: translateY(-15%);
-
+    width: 100%;
+    height: 220px;
 }
 .avatar {
-    margin-left: 10px;
+    margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .avatar img{
     max-height: 200px;
-    width: 200px;
+    max-width: 200px;
     border-radius: 15px;
 }
 .description {
     background-color: ghostwhite;
     border-radius: 15px;
-    margin-right: 20px;
+    margin: 10px;
     padding: 10px;
     display: flex;
     flex-direction: column;
