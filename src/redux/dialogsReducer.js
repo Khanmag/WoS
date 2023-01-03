@@ -1,7 +1,6 @@
 
 
 let ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE'
-let CHANGE_NEW_MESSAGE_TEXT = 'CHANGE_NEW_MESSAGE_TEXT'
 
 const initialState = {
     dialogs: [
@@ -30,7 +29,6 @@ const initialState = {
             messages: ['Hello my lovely daughter']
         },
     ],
-    newMessageText: 'Hi!',
     messages: [
         {text: 'Hi', id: 'asd'},
         {text: 'Meraba', id: 'asd'},
@@ -42,28 +40,18 @@ const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_NEW_MESSAGE:
             let newMessage = {
-                text: state.newMessageText,
+                text: action.text,
                 id: '123'
             }
             state.newMessageText = ''
             return {...state, 'messages': [...state.messages, newMessage]}
-        case CHANGE_NEW_MESSAGE_TEXT:
-            // state.newMessageText = action.text
-            return {...state, 'newMessageText': action.text}
         default:
             return state
     }
 }
 
-export const addNewMessageAC = () => {
-    return {type: ADD_NEW_MESSAGE}
-}
+export const addNewMessage = (text) => ({type: ADD_NEW_MESSAGE, text})
 
-export const changeNewMessageTextAC = (text) => {
-    return {
-        type: CHANGE_NEW_MESSAGE_TEXT,
-        text,
-    }
-}
+
 
 export default dialogsReducer

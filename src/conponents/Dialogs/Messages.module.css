@@ -21,21 +21,21 @@
 }
 
 
-.newmessagecreator {
+.new_message_creator {
     display: grid;
     grid-template-columns: 4fr 1fr;
 }
-.newmessagecreator textarea {
+.new_message_creator input {
     background-color: white;
     border: none;
     border: 0.5px solid rgba(128, 128, 128, 0.32);
     padding: 5px 10px;
     resize: none;
 }
-.newmessagecreator textarea:focus {
+.new_message_creator input:focus {
     outline: none;
 }
-.newmessagecreator button {
+.new_message_creator button {
     background-color: #cfcff1;
     border: none;
 }

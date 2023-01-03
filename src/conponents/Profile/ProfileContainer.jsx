@@ -30,7 +30,6 @@ class ProfileContainer extends React.Component {
                                profileInfo={this.props.profileInfo}
                                changeNewPostText={this.props.changeNewPostText}
                                addNewPost={this.props.addNewPost}
-                               newPostText={this.props.newPostText}
                                status={this.props.status}
                                updateStatus={this.props.updateStatus}
                     />
@@ -58,7 +57,6 @@ let mapStateToProps = (state) => {
     return {
         isFetching: state.profilePage.isFetching,
         profileInfo: state.profilePage.profileInfo,
-        newPostText: state.profilePage.newPostText,
         posts: state.profilePage.posts,
         status: state.profilePage.profileStatus,
         myId: state.authData.id
@@ -66,6 +64,6 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    changeNewPostText, addNewPost, getProfile,
+    addNewPost, getProfile,
     toggleIsFetching, setProfileInfo, getStatus, updateStatus
 })(withRouter(ProfileContainer))

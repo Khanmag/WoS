@@ -3,7 +3,7 @@ const Post = ({text}) => {
     return (
         <div className={st.container}>
             <img src='https://avatars.services.sap.com/images/mahesh.gonda.png' />
-            <p>{text}</p>
+            <textarea value={text}/>
         </div>
     )
 }

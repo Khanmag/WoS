@@ -33,7 +33,6 @@ const initialState = {
         {id: '3', text: 'JS is my kung-fu'},
         {id: '1', text: 'I am React GOD!!'},
     ],
-    newPostText: 'Assalam Aleikum',
     isFetching: false,
 }
 
@@ -42,9 +41,8 @@ const profileReducer = (state = initialState, action) => {
         case ADD_NEW_POST:
             let newPost = {
                 id: '5',
-                text: state.newPostText,
+                text: action.text,
             }
-            state.newPostText = ''
             return {...state, posts: [...state.posts, newPost]}
         case CHANGE_NEW_POST_TEXT:
             return {...state, newPostText: action.text}
@@ -60,15 +58,10 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-export const addNewPost = () => {
-    return {type: ADD_NEW_POST}
+export const addNewPost = (text) => {
+    return {type: ADD_NEW_POST, text}
 }
-export const changeNewPostText = (text) => {
-    return {
-        type: CHANGE_NEW_POST_TEXT,
-        text,
-    }
-}
+
 export const setProfileInfo = (profileInfo) => {
     return {
         type: SET_PROFILE_INFO,
@@ -102,7 +95,6 @@ export const getStatus = (id) => {
     }
 }
 export const updateStatus = (text) => {
-    // console.log(text)
     return (dispatch) => {
         profileAPI.updateStatus(text).then(response => {
             if (response.data.resultCode === 0) {
