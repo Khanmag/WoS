@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component {
         this.props.toggleIsFetching()
         let userId = this.props.router.params.id
         if (!userId) {
-            userId = this.props.myId || 19785
+            userId = this.props.myId
         }
         this.props.getProfile(userId)
         this.props.getStatus(userId)

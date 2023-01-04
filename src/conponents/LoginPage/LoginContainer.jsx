@@ -1,19 +1,35 @@
 import {Field, Form} from 'react-final-form'
 import st from './LoginPage.module.css'
+import {connect} from "react-redux";
+import {userLogin} from "../../redux/authReducer";
+import {Navigate} from "react-router-dom";
 
-const LoginContainer = () => {
+const LoginContainer = ({userLogin, isAuth}) => {
+    if (isAuth) {
+        return <Navigate to={'/dialogs'}/>
+    }
     return <div>
         <h1>Login</h1>
-        <LoginForm/>
+        <LoginForm userLogin={userLogin}/>
     </div>
 }
-export default LoginContainer
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+const mapStateToProps = (state) => {
+    return {isAuth: state.authData.isAuth}
+}
+export default connect(mapStateToProps, {userLogin})(LoginContainer)
 
-const onSubmit = async values => {
-    await sleep(300)
-    window.alert(JSON.stringify(values, 0, 2))
+
+
+
+// const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+// const onSubmit = async values => {
+//     await sleep(300)
+//     window.alert(JSON.stringify(values, 0, 2))
+// }
+const onSubmit = (values) => {
+    console.log(values)
+
 }
 
 const required = value => (value ? undefined : 'Required')
@@ -24,42 +40,41 @@ const composeValidators = (...validators) => value =>
     validators.reduce((error, validator) => error || validator(value), undefined)
 
 
-const LoginForm = () => {
+const LoginForm = ({userLogin}) => {
+
     return (
-        // <Form
-        //     onSubmit={formObj => {
-        //         console.log(formObj);
-        //     }}
-        // >
-        //     {({ handleSubmit }) => (
-        //         <form onSubmit={handleSubmit} className={st.form_wrapper}>
-        //             <Field name={'name'} type="text" placeholder="Name" component={'input'} />
-        //             <Field name="email" type="text" placeholder="Email" component={'input'} />
-        //             <Field name="rememberMe" type="checkbox" component={'input'} />
-        //             <button type="submit">Submit</button>
-        //         </form>
-        //     )}
-        // </Form>
         <Form
-            onSubmit={onSubmit}
-            render={({ handleSubmit, form, submitting, pristine, values }) => (
+            onSubmit={(values) => {
+                userLogin(values.email, values.password, values.rememberMe)
+            }}
+            render={({handleSubmit, form, submitting, pristine, values}) => (
                 <form onSubmit={handleSubmit}>
-                    <Field name="name" validate={composeValidators(required, minLength(3), maxLength(10))}>
-                        {({ input, meta }) => (
+                    <Field name="email" validate={composeValidators(required, minLength(3), maxLength(20))}>
+                        {({input, meta}) => (
                             <div>
-                                <label>First Name</label>
-                                <input className={meta.error ? st.error : ""} {...input} type="text" placeholder="First Name" />
+                                <label>Email</label>
+                                <input className={meta.error ? st.error : ""} {...input}
+                                       type="text" placeholder="example@mail.com"/>
                                 {meta.error && meta.touched && <span
                                     style={{color: 'red', paddingLeft: 10}}>{meta.error}</span>}
                             </div>
                         )}
                     </Field>
-                    <Field name="email" validate={required} >
-                        {({ input, meta }) => (
+                    <Field name="password" validate={required}>
+                        {({input, meta}) => (
                             <div>
-                                <label>Email</label>
-                                <input {...input} type="text" placeholder="example@mail.com" />
+                                <label>Password</label>
+                                <input {...input} type="password" placeholder="*********"/>
                                 {meta.error && meta.touched && <span>{meta.error}</span>}
+                            </div>
+                        )}
+                    </Field>
+                    <Field name="rememberMe" type="checkbox">
+                        {({input, meta}) => (
+                            <div>
+                                <label>Remember me</label>
+                                <input {...input}  />
+                                {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
                             </div>
                         )}
                     </Field>
