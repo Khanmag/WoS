@@ -3,23 +3,25 @@ import Navbar from "./conponents/Navbar/Navbar";
 import {Route, Routes} from "react-router-dom";
 import React from 'react'
 import News from "./conponents/News/News";
-import Settings from "./conponents/Settings/Settings";
-import Music from "./conponents/Music/Music";
 import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
 import UsersContainer from "./conponents/Users/UsersContainer";
 import ProfileContainer from "./conponents/Profile/ProfileContainer";
 import HeaderContainer from "./conponents/Header/HeaderContainer";
 import LoginContainer from "./conponents/LoginPage/LoginContainer";
-import {getAuthUserInfo} from "./redux/authReducer";
 import {connect} from "react-redux";
+import {appInitialize} from "./redux/appReducer";
+import Preloader from "./conponents/Preloader/Preloader";
 
 
 class App extends React.Component {
     componentDidMount() {
-        this.props.getAuthUserInfo()
+        this.props.appInitialize()
     }
 
     render () {
+        if (!this.props.initialized) {
+            return <Preloader />
+        }
         return (
             <div className={st.wrapper}>
                 <HeaderContainer/>
@@ -37,5 +39,8 @@ class App extends React.Component {
     }
 }
 
+let mapStateToProps = (state) => ({
+    initialized: state.app.initialized
+})
 
-export default connect(null, {getAuthUserInfo})(App);
+export default connect(mapStateToProps, {appInitialize})(App);

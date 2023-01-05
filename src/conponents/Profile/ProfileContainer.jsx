@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {
     addNewPost, toggleIsFetching,
-    changeNewPostText, getProfile, setProfileInfo, getStatus, updateStatus,
+    getProfile, setProfileInfo, getStatus, updateStatus,
 } from "../../redux/profileReducer";
 import Preloader from "../Preloader/Preloader";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
@@ -15,6 +15,10 @@ class ProfileContainer extends React.Component {
         let userId = this.props.router.params.id
         if (!userId) {
             userId = this.props.myId
+            if (!userId) {
+                console.log(this.props.router)
+                this.props.router.location.pathname='/login'
+            }
         }
         this.props.getProfile(userId)
         this.props.getStatus(userId)
@@ -24,7 +28,7 @@ class ProfileContainer extends React.Component {
     render() {
         return <>
             {
-                (this.props.isFetching && this.props.profileInfo)
+                (this.props.isFetchingProfile && this.props.profileInfo)
                     ? <Preloader/>
                     : <Profile posts={this.props.posts}
                                profileInfo={this.props.profileInfo}
@@ -55,7 +59,7 @@ function withRouter(Component) {
 
 let mapStateToProps = (state) => {
     return {
-        isFetching: state.profilePage.isFetching,
+        isFetchingProfile: state.profilePage.isFetchingProfile,
         profileInfo: state.profilePage.profileInfo,
         posts: state.profilePage.posts,
         status: state.profilePage.profileStatus,

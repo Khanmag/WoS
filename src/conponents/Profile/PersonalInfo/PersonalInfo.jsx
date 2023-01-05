@@ -8,6 +8,7 @@ import main_linkImg from '../../../localImage/contacts_logo/main_link.png'
 import youtubeImg from '../../../localImage/contacts_logo/youtube.png'
 import webImg from '../../../localImage/contacts_logo/web.png'
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const PersonalInfo = ({profileInfo, status, updateStatus}) => {
     let defaultImage = 'https://ru-static.z-dn.net/files/de9/253ede6117ef0934be62af55bc2b5ecd.png'
@@ -20,7 +21,7 @@ const PersonalInfo = ({profileInfo, status, updateStatus}) => {
                 <div className={st.description}>
                     <div>{profileInfo.fullName}</div>
                     <div>{profileInfo.aboutMe}</div>
-                    <ProfileStatus statusText={status} updateStatus={updateStatus}/>
+                    <ProfileStatusWithHooks statusText={status} updateStatus={updateStatus}/>
                     <Contacts contacts={profileInfo.contacts} />
                 </div>
             </div>

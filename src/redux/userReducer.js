@@ -6,17 +6,15 @@ let SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 let TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 let FOLLOW_ON_USER = 'FOLLOW_ON_USER'
 let UNFOLLOW_ON_USER = 'UNFOLLOW_ON_USER'
-let FOLLOWING_ON_PROGRESS = 'FOLLOWING_ON_PROGRESS'
 let DISABLE_CURRENT_BUTTON = 'DISABLE_CURRENT_BUTTON'
 let ENABLE_CURRENT_BUTTON = 'ENABLE_CURRENT_BUTTON'
-let CHECK_SHOULD_BE_DISABLED = 'CHECK_SHOULD_BE_DISABLED'
 
 let initialState = {
     users: [],
     pageSize: 8,
     totalUsersCount: 50,
     currentPage: 1,
-    isFetching: false,
+    isFetchingProfile: false,
     followingOnProcess: [],
 }
 
@@ -29,7 +27,7 @@ const userReducer = (state = initialState, action) => {
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage}
         case TOGGLE_IS_FETCHING:
-            return {...state, isFetching: !state.isFetching}
+            return {...state, isFetchingProfile: !state.isFetchingProfile}
         case FOLLOW_ON_USER:
             return {
                 ...state,
@@ -103,12 +101,6 @@ export const enableCurrentButton = (id) => {
         userId: id,
     }
 }
-export const checkShouldBeDisabled = (id) => {
-    return {
-        type: CHECK_SHOULD_BE_DISABLED,
-        userId: id,
-    }
-}
 
 export const getUsersThunk = (currentPage, pageSize) => {
     return (dispatch) => {
@@ -121,7 +113,6 @@ export const getUsersThunk = (currentPage, pageSize) => {
             })
     }
 }
-
 export const followThunk = (id) => {
     return (dispatch) => {
         dispatch(disableCurrentButton(id))
