@@ -1,4 +1,5 @@
 import Post from "./Post"
+import React from "react";
 
 const postsData = [
     {id: '1', text: 'HTML user'},
@@ -8,6 +9,7 @@ const postsData = [
 ]
 
 const PostsAll = ({posts}) => {
+    console.log('render')
     return (
         <div>
             {
@@ -19,4 +21,4 @@ const PostsAll = ({posts}) => {
     )
 }
 
-export default PostsAll
+export default React.memo(PostsAll)
