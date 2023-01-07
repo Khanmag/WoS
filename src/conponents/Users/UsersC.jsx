@@ -1,9 +1,7 @@
-import st from './Users.module.css'
 import React from 'react';
-import Preloader from '../Preloader/Preloader';
-import {usersAPI} from "../../API/apiRequests";
+import Preloader from '../common/Preloader';
 import User from "./UserSingle";
-import {disableCurrentButton, followThunk, getUsersThunk, unfollowThunk} from "../../redux/userReducer";
+import Paginator from "../common/Paginator";
 
 
 class Users extends React.Component {
@@ -52,23 +50,5 @@ class Users extends React.Component {
 }
 
 export default Users
-
-
-const Paginator = ({pagesNum, onCurrentPageChange, currentPage}) => {
-    let pages = []
-    for (let i = 1; i <= pagesNum; i++) {
-        pages.push(i)
-    }
-    return (
-        <div className={st.paginator_wrapper}>
-            {
-                pages.map(i => {
-                    return <a key={i} className={currentPage == i ? st.currentPage : ""}
-                              onClick={() => onCurrentPageChange(i)}>{i}</a>
-                })
-            }
-        </div>
-    )
-}
 
 

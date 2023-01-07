@@ -1,0 +1,14 @@
+.paginator_wrapper a {
+    min-width: 30px;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 30px;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+.currentPage {
+    background-color: black;
+    color: white;
+}

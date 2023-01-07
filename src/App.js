@@ -10,18 +10,15 @@ import HeaderContainer from "./conponents/Header/HeaderContainer";
 import LoginContainer from "./conponents/LoginPage/LoginContainer";
 import {connect} from "react-redux";
 import {appInitialize} from "./redux/appReducer";
-import Preloader from "./conponents/Preloader/Preloader";
+import Preloader from "./conponents/common/Preloader";
 
 
 class App extends React.Component {
     componentDidMount() {
         this.props.appInitialize()
     }
-
     render () {
-        if (!this.props.initialized) {
-            return <Preloader />
-        }
+        if (!this.props.initialized) return <Preloader />
         return (
             <div className={st.wrapper}>
                 <HeaderContainer/>

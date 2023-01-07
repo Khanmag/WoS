@@ -1,5 +1,5 @@
 .user_container {
-    width: 80%;
+    width: 500px;
     max-height: 100px;
     background-color: rgba(238, 232, 170, 0.45);
     border: 1px solid grey;
@@ -41,19 +41,7 @@
     justify-content: space-around;
     align-items: center;
 }
-.paginator_wrapper a {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 30px;
-    border: 1px solid grey;
-    cursor: pointer;
-}
-.currentPage {
-    background-color: black;
-    color: white;
-}
+
 .user_full_name, .user_status {
     margin: 5px;
 }

@@ -3,6 +3,7 @@ import st from './LoginPage.module.css'
 import {connect} from "react-redux";
 import {userLogin} from "../../redux/authReducer";
 import {Navigate} from "react-router-dom";
+import {EmailField, PasswordField, RememberMeCheckBox} from "../forForms/Fields";
 
 const LoginContainer = ({userLogin, isAuth}) => {
     if (isAuth) {
@@ -20,8 +21,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {userLogin})(LoginContainer)
 
 
-
-
 // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 // const onSubmit = async values => {
 //     await sleep(300)
@@ -29,7 +28,6 @@ export default connect(mapStateToProps, {userLogin})(LoginContainer)
 // }
 const onSubmit = (values) => {
     console.log(values)
-
 }
 
 const required = value => (value ? undefined : 'Required')
@@ -49,35 +47,9 @@ const LoginForm = ({userLogin}) => {
             }}
             render={({handleSubmit, form, submitting, pristine, values}) => (
                 <form onSubmit={handleSubmit}>
-                    <Field name="email" validate={composeValidators(required, minLength(3), maxLength(20))}>
-                        {({input, meta}) => (
-                            <div>
-                                <label>Email</label>
-                                <input className={meta.error ? st.error : ""} {...input}
-                                       type="text" placeholder="example@mail.com"/>
-                                {meta.error && meta.touched && <span
-                                    style={{color: 'red', paddingLeft: 10}}>{meta.error}</span>}
-                            </div>
-                        )}
-                    </Field>
-                    <Field name="password" validate={required}>
-                        {({input, meta}) => (
-                            <div>
-                                <label>Password</label>
-                                <input {...input} type="password" placeholder="*********"/>
-                                {meta.error && meta.touched && <span>{meta.error}</span>}
-                            </div>
-                        )}
-                    </Field>
-                    <Field name="rememberMe" type="checkbox">
-                        {({input, meta}) => (
-                            <div>
-                                <label>Remember me</label>
-                                <input {...input}  />
-                                {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
-                            </div>
-                        )}
-                    </Field>
+                    <EmailField  validators={composeValidators(required, minLength(3), maxLength(20))}/>
+                    <PasswordField validators={required} />
+                    <RememberMeCheckBox />
                     <div className="buttons">
                         <button type="submit" disabled={submitting}>
                             Submit
@@ -96,3 +68,4 @@ const LoginForm = ({userLogin}) => {
         />
     );
 }
+

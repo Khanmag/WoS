@@ -4,7 +4,7 @@ import {
     addNewPost, toggleIsFetching,
     getProfile, setProfileInfo, getStatus, updateStatus,
 } from "../../redux/profileReducer";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../common/Preloader";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {connect} from "react-redux";
 

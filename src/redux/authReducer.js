@@ -1,7 +1,7 @@
 import {authAPI} from "../API/apiRequests";
 
-let SET_AUTH_USER = 'SET_AUTH_USER'
-let RESET_AUTH_USER = 'RESET_AUTH_USER'
+let SET_AUTH_USER = 'authReducer/SET_AUTH_USER'
+let RESET_AUTH_USER = 'authReducer/RESET_AUTH_USER'
 
 let initialState = {
     id: null,
@@ -25,33 +25,25 @@ const authReducer = (state = initialState, action) => {
 export const setAuthUser = (id, login, email) => ({type: SET_AUTH_USER, data: {id, login, email}})
 export const resetAuthUser = () => ({type: RESET_AUTH_USER})
 
-export const getAuthUserInfo = () => (dispatch) => {
-    return authAPI.authMe().then(data => {
-        if (data.resultCode === 0) {
-            let {id, login, email} = data.data;
-            dispatch(setAuthUser(id, login, email))
-        }
-    })
-
-}
-
-export const userLogin = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.login(email, password, rememberMe).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserInfo())
-                // dispatch(setAuthUser(response.data.data.userId, 'User', email))
-            }
-        })
+export const getAuthUserInfo = () => async (dispatch) => {
+    let data = await authAPI.authMe()
+    if (data.resultCode === 0) {
+        let {id, login, email} = data.data;
+        dispatch(setAuthUser(id, login, email))
     }
 }
-export const userLogout = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.logout().then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(resetAuthUser())
-            }
-        })
+
+export const userLogin = (email, password, rememberMe) => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserInfo())
+    }
+}
+
+export const userLogout = () => async (dispatch) => {
+    let response = await authAPI.logout()
+    if (response.data.resultCode === 0) {
+        dispatch(resetAuthUser())
     }
 }
 
