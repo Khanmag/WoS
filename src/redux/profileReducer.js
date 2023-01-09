@@ -5,12 +5,14 @@ let CHANGE_NEW_POST_TEXT = 'CHANGE_NEW_POST_TEXT'
 let SET_PROFILE_INFO = 'SET_PROFILE_INFO'
 let TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 let SET_STATUS = 'SET_STATUS'
+let SAVE_PHOTOS_SUCCESS = 'profile/SAVE_PHOTOS_SUCCESS'
 
 let defaultImage = 'https://social-network.samuraijs.com/activecontent/images/users/19785/user.jpg'
 const initialState = {
     profileInfo: {
+        userId: null,
         fullName: 'Solo',
-        aboutMe: 'Ready for everything',
+        // aboutMe: 'Ready for everything',
         photos: {
             small: defaultImage,
             large: defaultImage,
@@ -26,6 +28,7 @@ const initialState = {
             mainLink: null,
         }
     },
+    // profileInfo: null,
     profileStatus: '',
     posts: [
         {id: '1', text: 'HTML user'},
@@ -52,6 +55,8 @@ const profileReducer = (state = initialState, action) => {
             return {...state, isFetching: !state.isFetching}
         case SET_STATUS:
             return {...state, profileStatus: action.text}
+        case SAVE_PHOTOS_SUCCESS:
+            return {...state, profileInfo: {...state.profileInfo, photos: action.photos}}
         default:
             return state
     }
@@ -77,6 +82,9 @@ export const setStatus = (text) => {
 export const toggleIsFetching = () => {
     return {type: TOGGLE_IS_FETCHING}
 }
+export const savePhotosSuccess = (photos) => {
+    return {type: SAVE_PHOTOS_SUCCESS, photos}
+}
 
 export const getProfile = (id) => {
     return (dispatch) => {
@@ -86,7 +94,6 @@ export const getProfile = (id) => {
         })
     }
 }
-
 export const getStatus = (id) => {
     return (dispatch) => {
         profileAPI.getStatus(id).then(data => {
@@ -104,6 +111,18 @@ export const updateStatus = (text) => {
             }
         })
     }
+}
+export const updatePhoto = (photoFile) => async (dispatch) => {
+    let response = await profileAPI.updatePhoto(photoFile)
+    dispatch(savePhotosSuccess(response.data.data.photos))
+}
+export const saveProfileData = (profileData) => async (dispatch) => {
+    let response = await profileAPI.saveProfileData(profileData)
+    console.log('response: ',response.data)
+    if (response.data.resultCode === 0) {
+        dispatch(getProfile(profileData.userId))
+    }
+
 }
 
 

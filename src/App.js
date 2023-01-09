@@ -11,6 +11,7 @@ import LoginContainer from "./conponents/LoginPage/LoginContainer";
 import {connect} from "react-redux";
 import {appInitialize} from "./redux/appReducer";
 import Preloader from "./conponents/common/Preloader";
+import Music from "./conponents/Music/Music";
 
 
 class App extends React.Component {
@@ -29,6 +30,7 @@ class App extends React.Component {
                     <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>
                     <Route path={'/users'} element={<UsersContainer/>}/>
                     <Route path={'/login'} element={<LoginContainer/>}/>
+                    <Route path={'/music'} element={<Music/>}/>
                     <Route path={'*'} element={<News/>}/>
                 </Routes>
             </div>

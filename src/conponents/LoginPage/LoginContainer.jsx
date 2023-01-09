@@ -5,18 +5,21 @@ import {userLogin} from "../../redux/authReducer";
 import {Navigate} from "react-router-dom";
 import {EmailField, PasswordField, RememberMeCheckBox} from "../forForms/Fields";
 
-const LoginContainer = ({userLogin, isAuth}) => {
+const LoginContainer = ({userLogin, isAuth, captchaURL}) => {
     if (isAuth) {
         return <Navigate to={'/dialogs'}/>
     }
     return <div>
         <h1>Login</h1>
-        <LoginForm userLogin={userLogin}/>
+        <LoginForm userLogin={userLogin} captchaURL={captchaURL}/>
     </div>
 }
 
 const mapStateToProps = (state) => {
-    return {isAuth: state.authData.isAuth}
+    return {
+        isAuth: state.authData.isAuth,
+        captchaURL: state.authData.captchaURL,
+    }
 }
 export default connect(mapStateToProps, {userLogin})(LoginContainer)
 
@@ -30,26 +33,29 @@ const onSubmit = (values) => {
     console.log(values)
 }
 
-const required = value => (value ? undefined : 'Required')
-const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
-const minLength = min => value => value.length >= min ? undefined : `Should be greater than ${min}`
-const maxLength = max => value => value.length <= max ? undefined : `Should be less than ${max}`
-const composeValidators = (...validators) => value =>
-    validators.reduce((error, validator) => error || validator(value), undefined)
 
-
-const LoginForm = ({userLogin}) => {
+const LoginForm = ({userLogin, captchaURL}) => {
 
     return (
         <Form
             onSubmit={(values) => {
-                userLogin(values.email, values.password, values.rememberMe)
+                console.log(values)
+                userLogin(values.email, values.password, values.rememberMe, values.captcha)
             }}
             render={({handleSubmit, form, submitting, pristine, values}) => (
                 <form onSubmit={handleSubmit}>
-                    <EmailField  validators={composeValidators(required, minLength(3), maxLength(20))}/>
-                    <PasswordField validators={required} />
+                    <EmailField />
+                    <PasswordField />
                     <RememberMeCheckBox />
+                    {(captchaURL) && <img src={captchaURL} alt='captcha'/> }
+                    <Field name='captcha' type="text">
+                        {({input, meta}) => (
+                            <div>
+                                <input {...input}  />
+                                {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
+                            </div>
+                        )}
+                    </Field>
                     <div className="buttons">
                         <button type="submit" disabled={submitting}>
                             Submit

@@ -9,7 +9,6 @@ const postsData = [
 ]
 
 const PostsAll = ({posts}) => {
-    console.log('render')
     return (
         <div>
             {

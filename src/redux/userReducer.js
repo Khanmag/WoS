@@ -91,7 +91,7 @@ export const getUsersThunk = (currentPage, pageSize) => async (dispatch) => {
     dispatch(setUsers(response.data.items));
     dispatch(toggleIsFetching());
     dispatch(setTotalUsersCount(response.data.totalCount))
-    console.log(response.data.totalCount)
+    // console.log(response.data.totalCount)
 }
 export const followThunk = (id) => async (dispatch) => {
     dispatch(disableCurrentButton(id))

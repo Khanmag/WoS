@@ -21,7 +21,7 @@ window.store = store
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let rerenderEntireTree = (state) => {
     root.render(
-        <HashRouter basename={process.env.PUBLIC_URL} >
+        <HashRouter>
             <Provider store={store}>
                 <App />
             </Provider>

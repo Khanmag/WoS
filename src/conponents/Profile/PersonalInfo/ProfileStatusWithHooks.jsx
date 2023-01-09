@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-const ProfileStatus = ({statusText, updateStatus}) => {
+const ProfileStatus = ({statusText, updateStatus, isAuth}) => {
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(statusText)
     const activateEditMode = () => {
@@ -17,7 +17,7 @@ const ProfileStatus = ({statusText, updateStatus}) => {
         setStatus(statusText)
     }, [statusText])
     return <div>
-        {!editMode
+        {(!editMode)
             ? <span onDoubleClick={activateEditMode}>{status || 'status'}</span>
             : <input autoFocus={true}
                      onChange={onStatusChange}
