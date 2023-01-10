@@ -1,53 +1,53 @@
+import React, {useEffect, useState} from "react";
+import Paginator from "../common/Paginator";
+import Preloader from "../common/Preloader";
+import User from "./UserCard";
+import {useParams} from "react-router-dom";
 import st from './Users.module.css'
-import defaultUserAvatar from '../../localImage/avatarUser.png'
-import axios from "axios";
 
 
-const Users = ({users, toggleFollowing, setUsers}) => {
-    if (users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            console.log(response.data.items)
-            setUsers(response.data.items)
-        })
+const Users = ({
+                   getUsersThunk, totalUsersCount, pageSize, followingOnProcess,
+                   users, followThunk, unfollowThunk, isFetching
+               }) => {
+    let {page} = useParams()
+    const [currentPage, setCurrentPage] = useState(page || 1)
+    useEffect(() => {
+        getUsersThunk(currentPage, pageSize)
+    }, [currentPage])
+
+    const checkDisableButton = (id) => {
+        return followingOnProcess.some(item => item === id)
     }
+    const pagesCount = Math.ceil(totalUsersCount / pageSize)
     return (
         <div>
-            {
-                users.map( item => {
-                    return <User toggleFollowing={toggleFollowing} key={item.id}
-                                 id={item.id}
-                                 avatar={item.photos.small}
-                                 userName={item.name}
-                                 userStatus={item.status}
-                                 userLocation={item.location}
-                                 isFollow={item.followed}
-                    />
-                })
+            <Paginator currentPage={currentPage}
+                       pagesCount={pagesCount}
+                       setCurrentPage={setCurrentPage}
+            />
+
+            {isFetching
+                ? <Preloader/>
+
+                : <div className={st.users_cards_wrapper}>
+                    {users.map(item => {
+                        return <User checkDisableButton={checkDisableButton}
+                                     followThunk={followThunk}
+                                     unfollowThunk={unfollowThunk}
+                                     key={item.id}
+                                     id={item.id}
+                                     avatar={item.photos.small}
+                                     userName={item.name}
+                                     userStatus={item.status}
+                                     isFollow={item.followed}
+                        />
+                    })}
+                </div>
             }
         </div>
     )
 }
 
-export default Users
+export default React.memo(Users)
 
-
-const User = ({toggleFollowing, id, avatar, userName, userLocation, userStatus, isFollow}) => {
-    return (
-        <div className={st.user_container} >
-            <div className={st.user_avatar}>
-                <img src={avatar || defaultUserAvatar} alt={'...'}/>
-            </div>
-            <div className={st.user_description}>
-                <div className={st.user_fullname}>{userName || 'anonim'}</div>
-                <div className={st.user_location}>{userLocation || 'world\'s men'}</div>
-                <div className={st.user_status}>{userStatus || 'I\'m new, say me Hi!'}</div>
-            </div>
-            <div className={st.following_button}>
-                <button onClick={() => {toggleFollowing(id)}}>
-                    {isFollow ? 'Unfollow' : 'Follow'}
-                </button>
-            </div>
-
-        </div>
-    )
-}

@@ -1,51 +1,6 @@
-.user_container {
-    width: 500px;
-    max-height: 100px;
-    background-color: rgba(238, 232, 170, 0.45);
-    border: 1px solid grey;
-    display: grid;
-    grid-template-columns: 2fr 11fr;
-    grid-template-rows: 2fr 7fr;
-    grid-template-areas: 'a d' 'b d';
-}
-.user_avatar {
-    grid-area: a;
-    width: 98%;
-    height: 98%;
-    padding: 2%;
-}
-.user_avatar img {
-    max-height: 100%;
-    max-width: 100%;
-}
-.user_description {
-    grid-area: d;
-}
-.following_button {
-    grid-area: b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.following_button button {
-    border: none;
-    border-radius: 5px;
-    background-color: #9999d9;
-    color: white;
-    font-family: Comfortaa;
-}
-.paginator_wrapper {
-    margin: 0 auto;
-    max-width: 50%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
-.user_full_name, .user_status {
-    margin: 5px;
-}
-.user_full_name a {
-    text-decoration: none;
-    color: rgba(29, 39, 101, 0.91);
+.users_cards_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows:  1fr 1fr 1fr 1fr;
 }

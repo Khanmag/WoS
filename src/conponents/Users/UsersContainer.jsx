@@ -1,11 +1,10 @@
 import {connect} from "react-redux";
-import Users from "./UsersC";
+import Users from "./Users";
 import {
     disableCurrentButton, enableCurrentButton,
-    followOnUser, followThunk, getUsersThunk,
+    followThunk, getUsersThunk,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers,
     toggleIsFetching, unfollowOnUser, unfollowThunk,
 } from "../../redux/userReducer";
 
@@ -22,7 +21,7 @@ let mapStateToProps = (state) => {
 }
 
 const UsersContainer = connect(mapStateToProps,
-    {setUsers, setTotalUsersCount, setCurrentPage, getUsersThunk, followThunk, unfollowThunk,
-        toggleIsFetching, followOnUser, unfollowOnUser, disableCurrentButton, enableCurrentButton
+    {setTotalUsersCount, setCurrentPage, getUsersThunk, followThunk, unfollowThunk,
+        toggleIsFetching, disableCurrentButton, enableCurrentButton
 })(Users)
 export default UsersContainer

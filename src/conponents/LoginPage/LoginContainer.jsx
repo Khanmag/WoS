@@ -1,14 +1,15 @@
 import {Field, Form} from 'react-final-form'
 import st from './LoginPage.module.css'
 import {connect} from "react-redux";
-import {userLogin} from "../../redux/authReducer";
 import {Navigate} from "react-router-dom";
 import {EmailField, PasswordField, RememberMeCheckBox} from "../forForms/Fields";
+import {userLogin} from "../../redux/authReducer";
 
 const LoginContainer = ({userLogin, isAuth, captchaURL}) => {
     if (isAuth) {
         return <Navigate to={'/dialogs'}/>
     }
+
     return <div>
         <h1>Login</h1>
         <LoginForm userLogin={userLogin} captchaURL={captchaURL}/>
@@ -35,11 +36,9 @@ const onSubmit = (values) => {
 
 
 const LoginForm = ({userLogin, captchaURL}) => {
-
     return (
         <Form
             onSubmit={(values) => {
-                console.log(values)
                 userLogin(values.email, values.password, values.rememberMe, values.captcha)
             }}
             render={({handleSubmit, form, submitting, pristine, values}) => (
@@ -48,14 +47,14 @@ const LoginForm = ({userLogin, captchaURL}) => {
                     <PasswordField />
                     <RememberMeCheckBox />
                     {(captchaURL) && <img src={captchaURL} alt='captcha'/> }
-                    <Field name='captcha' type="text">
+                    {(captchaURL) && <Field name='captcha' type="text">
                         {({input, meta}) => (
                             <div>
                                 <input {...input}  />
                                 {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
                             </div>
                         )}
-                    </Field>
+                    </Field>}
                     <div className="buttons">
                         <button type="submit" disabled={submitting}>
                             Submit

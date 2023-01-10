@@ -1,36 +1,52 @@
 import st from "./Paginator.module.css";
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 
-const Paginator = ({pagesNum, onCurrentPageChange, currentPage}) => {
-    let pages = []
-    for (let i = 1; i <= pagesNum; i++) {
-        pages.push(i)
-    }
+const Paginator = ({pagesCount, setCurrentPage, currentPage}) => {
     return (
         <div className={st.paginator_wrapper}>
-            <CreateRef number={pages[0]} onCurrentPageChange={onCurrentPageChange} currentPage={currentPage}/>
-            {(currentPage > 3) && <span>...</span>}
-            {(currentPage > 2) &&
-                <CreateRef number={pages[currentPage - 2]} onCurrentPageChange={onCurrentPageChange}
-                           currentPage={currentPage}/>}
-            {(currentPage > 1 && currentPage < pages.length - 1) &&
-                <CreateRef number={pages[currentPage - 1]} onCurrentPageChange={onCurrentPageChange}
-                           currentPage={currentPage}/>}
-            {(currentPage < pages.length) &&
-                <CreateRef number={pages[currentPage]} onCurrentPageChange={onCurrentPageChange}
-                           currentPage={currentPage}/>}
-            {(currentPage < pages.length - 2) && <span>...</span>}
-            <CreateRef number={pages[pages.length - 1]} onCurrentPageChange={onCurrentPageChange}
-                       currentPage={currentPage}/>
+
+            {(currentPage > 2)
+                ? <CreatePageButton pageNum={1} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                : <div></div>
+            }
+
+            <div>
+                {(currentPage > 2) && <span>...</span>}
+            </div>
+
+            {(currentPage > 1)
+                ? <CreatePageButton pageNum={currentPage - 1} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                : <div></div>
+            }
+            <CreatePageButton pageNum={currentPage} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+
+            {(currentPage < pagesCount)
+                ? <CreatePageButton pageNum={+currentPage + 1} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                : <div></div>
+            }
+            <div>
+                {(currentPage < (pagesCount - 1)) && <span>...</span>}
+            </div>
+
+            {(currentPage < pagesCount - 1)
+                ? <CreatePageButton pageNum={pagesCount} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                : <div></div>
+            }
         </div>
     )
 }
 export default Paginator
 
-const CreateRef = ({number, onCurrentPageChange, currentPage}) => {
-    return <a onClick={() => onCurrentPageChange(number)}
-              className={(number === currentPage) ? st.currentPage : ""}>
-        {number}
-    </a>
+
+const CreatePageButton = ({pageNum, currentPage, setCurrentPage}) => {
+    let activeLink = st.current_page + " " + st.usual_link
+    let usualLink = st.usual_link
+    return <div onClick={() => {setCurrentPage(pageNum)}}>
+        <NavLink to={`/users/${pageNum}`}
+                 className={(pageNum === currentPage) ? activeLink : usualLink}>
+            {pageNum}
+        </NavLink>
+    </div>
 }

@@ -1,5 +1,4 @@
 import st from './App.module.css'
-import Navbar from "./conponents/Navbar/Navbar";
 import {Route, Routes} from "react-router-dom";
 import React from 'react'
 import News from "./conponents/News/News";
@@ -11,7 +10,7 @@ import LoginContainer from "./conponents/LoginPage/LoginContainer";
 import {connect} from "react-redux";
 import {appInitialize} from "./redux/appReducer";
 import Preloader from "./conponents/common/Preloader";
-import Music from "./conponents/Music/Music";
+import Settings from "./conponents/Settings/Settings";
 
 
 class App extends React.Component {
@@ -23,16 +22,18 @@ class App extends React.Component {
         return (
             <div className={st.wrapper}>
                 <HeaderContainer/>
-                <Navbar/>
-                <Routes>
-                    <Route path={'/'} element={<ProfileContainer/>}/>
-                    <Route path={'/profile/:id?'} element={<ProfileContainer/>}/>
-                    <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>
-                    <Route path={'/users'} element={<UsersContainer/>}/>
-                    <Route path={'/login'} element={<LoginContainer/>}/>
-                    <Route path={'/music'} element={<Music/>}/>
-                    <Route path={'*'} element={<News/>}/>
-                </Routes>
+                <div className={st.main}>
+                    <Routes>
+                        <Route path={'/'} element={<ProfileContainer/>}/>
+                        <Route path={'/profile/:id?'} element={<ProfileContainer/>}/>
+                        <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>
+                        <Route path={'/users/:page?'} element={<UsersContainer/>}/>
+                        <Route path={'/login'} element={<LoginContainer/>}/>
+                        <Route path={'/settings/:page?'} element={<Settings/>}/>
+                        {/*<Route path={'*'} element={<News/>}/>*/}
+                    </Routes>
+                </div>
+
             </div>
         );
     }

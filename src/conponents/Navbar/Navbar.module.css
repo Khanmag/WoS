@@ -1,17 +1,19 @@
 .nav {
     grid-area: nav;
-    background-color: bisque;
     display: flex;
-    flex-direction: column;
-    /*justify-content: center;*/
-    align-items: start;
+    /*flex-direction: column;*/
+    justify-content: center;
+    align-items: center;
   }
-.navlink {
+.nav_link {
     padding: 5px;
+    margin: 15px;
     color: white;
     text-decoration: none;
 }
 
-.activelink {
+.active_link {
+    background-color: white;
+    border-radius: 5px;
     color: black;
 }

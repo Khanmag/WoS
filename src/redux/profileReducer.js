@@ -1,4 +1,5 @@
 import {profileAPI} from "../API/apiRequests";
+import defaultImage from '../localImage/defaultUser.png'
 
 let ADD_NEW_POST = 'ADD_NEW_POST'
 let CHANGE_NEW_POST_TEXT = 'CHANGE_NEW_POST_TEXT'
@@ -7,12 +8,10 @@ let TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 let SET_STATUS = 'SET_STATUS'
 let SAVE_PHOTOS_SUCCESS = 'profile/SAVE_PHOTOS_SUCCESS'
 
-let defaultImage = 'https://social-network.samuraijs.com/activecontent/images/users/19785/user.jpg'
 const initialState = {
     profileInfo: {
         userId: null,
-        fullName: 'Solo',
-        // aboutMe: 'Ready for everything',
+        fullName: 'guest',
         photos: {
             small: defaultImage,
             large: defaultImage,
@@ -91,6 +90,13 @@ export const getProfile = (id) => {
         profileAPI.getUserProfile(id).then(data => {
             dispatch(setProfileInfo(data))
             dispatch(toggleIsFetching())
+        })
+    }
+}
+export const getProfilePhoto = (id, action) => {
+    return (dispatch) => {
+        profileAPI.getUserProfile(id).then(data => {
+            dispatch(action(data.photos))
         })
     }
 }

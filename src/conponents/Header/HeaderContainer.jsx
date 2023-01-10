@@ -8,6 +8,7 @@ class HeaderContainer extends React.Component {
     render() {
         return <Header login={this.props.login}
                        isAuth={this.props.isAuth}
+                       photo={this.props.photo}
                        userLogout={this.props.userLogout}/>
     }
 }
@@ -19,6 +20,7 @@ let mapStateToProps = (state) => {
         login: state.authData.login,
         email: state.authData.email,
         isAuth: state.authData.isAuth,
+        photo: state.authData.photos.small,
     }
 }
 

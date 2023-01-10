@@ -1,6 +1,6 @@
 import st from './Dialogs.module.css'
 import {Navigate, NavLink} from "react-router-dom";
-import React from "react";
+import React, {useContext} from "react";
 import Messages from "./Messages";
 
 
@@ -19,7 +19,6 @@ const Dialog = ({name, id, avatar}) => {
 
 
 const Dialogs = ({dialogs, messages, newMessageText, addNewMessage, changeNewMessageText, isAuth}) => {
-
     return (
         <div className={st.dialogswrapper}>
 

@@ -21,17 +21,17 @@ window.store = store
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let rerenderEntireTree = (state) => {
     root.render(
-        <HashRouter>
+        <BrowserRouter>
             <Provider store={store}>
-                <App />
+                <App/>
             </Provider>
-        </HashRouter>
+        </BrowserRouter>
     );
 }
 
 rerenderEntireTree(store.getState())
 
-store.subscribe( () => {
+store.subscribe(() => {
     rerenderEntireTree(store.getState())
 })
 

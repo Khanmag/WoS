@@ -1,20 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
 .wrapper {
-  display: grid;
-  max-width: 800px;
+  background-color: #343434;
   margin: 0 auto;
-  font-family: Comfortaa;
-
-  grid-template-areas: 
-  "header header"
-  "nav content";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 5fr;
-  grid-gap: 10px;
+  font-family: Comfortaa, serif;
+  min-height: 100vh;
 }
-.content {
-  grid-area: content;
+.main {
+  width: 800px;
+  margin: 0 auto;
 }
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Preloader from '../common/Preloader';
-import User from "./UserSingle";
+import User from "./UserCard";
 import Paginator from "../common/Paginator";
 
 

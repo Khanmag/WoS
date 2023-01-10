@@ -1,14 +1,29 @@
-.paginator_wrapper a {
-    min-width: 30px;
-    height: 30px;
-    padding: 5px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 30px;
-    border: 1px solid grey;
-    cursor: pointer;
+.paginator_wrapper {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 400px;
+    margin: 0 auto;
 }
-.currentPage {
-    background-color: black;
+
+.paginator_wrapper div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.usual_link {
+    text-decoration: none;
     color: white;
+    padding: 5px;
+    background-color: #9999d9;
+    border-radius: 50px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.current_page {
+    color: white;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 0;
 }

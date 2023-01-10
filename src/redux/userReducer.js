@@ -12,7 +12,7 @@ let ENABLE_CURRENT_BUTTON = 'usersReducer/ENABLE_CURRENT_BUTTON'
 
 let initialState = {
     users: [],
-    pageSize: 8,
+    pageSize: 24,
     totalUsersCount: null,
     currentPage: 1,
     isFetchingProfile: false,
