@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/WayOfSamuraiSocialWeb/static/css/main.8a36837f.css",
-    "main.js": "/WayOfSamuraiSocialWeb/static/js/main.e4962dad.js",
+    "main.js": "/WayOfSamuraiSocialWeb/static/js/main.3a658b52.js",
     "static/js/787.2f7fd6f8.chunk.js": "/WayOfSamuraiSocialWeb/static/js/787.2f7fd6f8.chunk.js",
     "static/media/sites-responsivos.png": "/WayOfSamuraiSocialWeb/static/media/sites-responsivos.3163fdf2beb42aba2085.png",
     "static/media/defaultUser.png": "/WayOfSamuraiSocialWeb/static/media/defaultUser.25eba4ad1bc0bec0971e.png",
@@ -12,11 +12,11 @@
     "static/media/Ellipsis-1.8s-800px.svg": "/WayOfSamuraiSocialWeb/static/media/Ellipsis-1.8s-800px.ed326624b1cd62dada51efe7c77861dc.svg",
     "index.html": "/WayOfSamuraiSocialWeb/index.html",
     "main.8a36837f.css.map": "/WayOfSamuraiSocialWeb/static/css/main.8a36837f.css.map",
-    "main.e4962dad.js.map": "/WayOfSamuraiSocialWeb/static/js/main.e4962dad.js.map",
+    "main.3a658b52.js.map": "/WayOfSamuraiSocialWeb/static/js/main.3a658b52.js.map",
     "787.2f7fd6f8.chunk.js.map": "/WayOfSamuraiSocialWeb/static/js/787.2f7fd6f8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a36837f.css",
-    "static/js/main.e4962dad.js"
+    "static/js/main.3a658b52.js"
   ]
 }
