@@ -14,27 +14,37 @@ const ProfileContainer = ({
                               getProfile, getStatus, addNewPost, status, updateStatus, updatePhoto, saveProfileData
                           }) => {
     const {userId} = useParams()
-    const isOwner = () => !(userId && (userId !== authUserId));
-
+    console.log(userId)
+    const isOwner = () => {
+        if ( userId && (userId !== authUserId) ) return false
+        return true
+    }
     useEffect(() => {
-        let id = userId
         toggleIsFetching()
-        if (!userId && isAuth) {
-            id = authUserId
+        if (!userId && !isAuth) {
+            return <Navigate to={'/login'}/>
+        } else if (!userId && isAuth) {
+            getProfile(authUserId)
+            getStatus(authUserId)
         }
-        getProfile(id)
-        getStatus(id)
+        getProfile(userId)
+        getStatus(userId)
     }, [isAuth])
 
+
     return <>
-        {(!userId && !isAuth) && <Navigate to={'/login'}/>}
         {
             (isFetchingProfile && profileInfo)
                 ? <Preloader/>
-                : <Profile profileInfo={profileInfo} addNewPost={addNewPost}
-                           status={status} updateStatus={updateStatus}
-                           isAuth={isAuth} isOwner={isOwner()}
-                           updatePhoto={updatePhoto} saveProfileData={saveProfileData}/>
+                : <Profile profileInfo={profileInfo}
+                           addNewPost={addNewPost}
+                           status={status}
+                           updateStatus={updateStatus}
+                           isAuth={isAuth}
+                           isOwner={isOwner()}
+                           updatePhoto={updatePhoto}
+                           saveProfileData={saveProfileData}
+                />
         }
     </>
 
@@ -52,8 +62,8 @@ let mapStateToProps = (state) => {
         authUserId: state.authData.id
     }
 }
-let dispatching = {
+
+export default connect(mapStateToProps, {
     addNewPost, getProfile, saveProfileData,
     toggleIsFetching, setProfileInfo, getStatus, updateStatus, updatePhoto,
-}
-export default connect(mapStateToProps, dispatching)(ProfileContainer)
+})(ProfileContainer)

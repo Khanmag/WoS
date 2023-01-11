@@ -1,19 +1,11 @@
 .personal_info_wrapper {
-}
-.banner {
-    max-height: 200px;
-}
-.banner img {
-    width: 100%;
-    max-height:  200px;
-    object-fit: cover;
-}
-.avatar_plus_description {
     display: grid;
     grid-template-columns: 3fr 7fr;
     width: 100%;
-    height: 220px;
+    /*height: 220px;*/
 }
+
+/*for avatar*/
 .avatar {
     margin: 10px;
     display: flex;
@@ -34,20 +26,64 @@
     color: rgba(255, 255, 255, 0);
     width: 100%;
 }
+/**/
+
+
 .description {
     background-color: ghostwhite;
     border-radius: 15px;
     margin: 10px;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    max-width: 100%;
+}
+.basic_info_wrapper {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+}
+.basic_info_wrapper div {
+    width: 100%;
+    max-height: max-content;
+}
+.basic_info_wrapper div * {
+    margin: 0;
+    word-break: break-all;
+}
+.basic_info_wrapper div h6 {
+    padding-top: 7px;
+}
+.basic_info_wrapper div p {
+    width: 100%;
+    overflow: hidden;
+}
+.edit_mode_button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    font-family: Comfortaa, serif;
+    background-color: #343434;
+    color: white;
+    padding: 5px;
+    border-radius: 15px 15px 15px 0;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.contacts_wrapper {
+    margin-top: 10px;
+}
+.contacts_wrapper * {
+    margin: 2px;
+}
+.contacts_wrapper h4 {
+    text-align: center;
 }
 .contacts_container {
-    width: 240px;
+    position: relative;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     /*align-items: center;*/
 }
 .contacts_container a {
@@ -58,6 +94,14 @@
     max-width: 25px;
     max-height: 25px ;
 }
+.disabled_link {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.1;
+}
+
+
+
 .modal_window_wrapper {
     position: fixed;
     top: 0;
@@ -73,9 +117,6 @@
 .modal_window {
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
-    /*width: 400px;*/
-    /*height: 600px;*/
     background-color: white;
     min-width: 500px;
 }

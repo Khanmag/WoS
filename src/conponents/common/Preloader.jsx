@@ -1,9 +1,10 @@
-import preloader from '../../localImage/preloader.svg'
+import preloader from '../../localImage/Ellipsis-1.8s-800px.svg'
+import st from './Preloader.module.css'
 
 const Preloader = () => {
     return (
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <img style={{maxWidth: 100}} src={preloader} alt={'preloader'} />
+        <div className={st.preloader_block}>
+            <img src={preloader} alt={'preloader'} />
         </div>
     )
 }

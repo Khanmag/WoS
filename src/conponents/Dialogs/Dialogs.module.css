@@ -31,3 +31,24 @@
     transform: scale(1.1);
     border: 0.5px solid rgba(128, 128, 128, 0.51);
 }
+.developing_page {
+    min-height: 70vh;
+    background-image: url("https://mulino58.ru/wp-content/uploads/4/e/1/4e12d3efbe0ec1d720319afd66dcc427.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /*background-color: white;*/
+    border-radius: 30px;
+}
+.developing_page h3 {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.47);
+    max-width: max-content;
+    margin: 0 auto;
+    line-height: 100%;
+    vertical-align: center;
+    /*width: 100%;*/
+    /*text-align: center;*/
+    padding: 10px;
+    border-radius: 10px;
+}

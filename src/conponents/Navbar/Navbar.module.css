@@ -11,7 +11,10 @@
     color: white;
     text-decoration: none;
 }
+.nav_link:hover {
+    border-bottom: 2px solid yellow;
 
+}
 .active_link {
     background-color: white;
     border-radius: 5px;

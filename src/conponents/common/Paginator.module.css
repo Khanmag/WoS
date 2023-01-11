@@ -1,12 +1,13 @@
 .paginator_wrapper {
     padding-top: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 5fr 1fr 5fr 5fr 5fr 1fr 5fr;
     width: 400px;
     margin: 0 auto;
 }
 
 .paginator_wrapper div {
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;

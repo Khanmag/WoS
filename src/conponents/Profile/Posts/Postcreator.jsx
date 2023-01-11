@@ -30,10 +30,6 @@ const PostCreator = ({addNewPost}) => {
                 )
             }
               </Form>
-        // <div className={st.post_creator_wrapper}>
-        //     <textarea value={newPostText} onChange={(e) => changeNewPostText(e.target.value)}/>
-        //     <button onClick={addNewPost}>Add post</button>
-        // </div>
     )
 }
 export default PostCreator

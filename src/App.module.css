@@ -4,7 +4,9 @@
   background-color: #343434;
   margin: 0 auto;
   font-family: Comfortaa, serif;
+  width: 100vw;
   min-height: 100vh;
+  overflow: hidden;
 }
 .main {
   width: 800px;

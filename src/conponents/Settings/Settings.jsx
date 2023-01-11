@@ -14,9 +14,12 @@ const Settings = () => {
     }, [currentPage])
     return (
         <div>
-            <NavLink to={`/settings/${(+currentPage + 1)}`} onClick={() => {setCurrentPage(+currentPage + 1)}}>next</NavLink>
+            <NavLink to={`/settings/${(+currentPage + 1)}`}
+                     onClick={() => {setCurrentPage(+currentPage + 1)}}>
+                next
+            </NavLink>
             {
-                users.map(item => <div>{item.name}</div>)
+                users.map(item => <div key={item.name}>{item.name}</div>)
             }
         </div>
     )

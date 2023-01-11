@@ -1,14 +1,7 @@
 import st from './Navbar.module.css'
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
-const createNavLink = (name, link, i) => {
-    return (
-        <NavLink to={link} key={i}
-                 className={({isActive}) => isActive ? (st.active_link + " " + st.nav_link) : st.nav_link}>
-            {name}
-        </NavLink>
-    )
-}
+
 const navbarData = [
     {name: "Profile", link: "/profile"},
     {name: "Dialogs", link: "/dialogs"},
@@ -18,13 +11,19 @@ const navbarData = [
     {name: "Setting", link: "/settings"},
 ]
 const Navbar = () => {
-    return (
-        <nav className={st.nav}>
-            {navbarData.map((item, i) => (
-                createNavLink(item.name, item.link, i)
+    return <nav className={st.nav}>
+            {navbarData.map((item) => (
+                <CreateNavLink name={item.name} link={item.link} key={item.name} />
             ))}
         </nav>
-    )
 }
-
 export default Navbar
+
+
+const CreateNavLink = ({name, link}) => {
+    return <NavLink to={link}
+                 className={({isActive}) => isActive ? (st.active_link + " " + st.nav_link) : st.nav_link}
+        >
+            {name}
+        </NavLink>
+}

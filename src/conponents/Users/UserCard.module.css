@@ -12,16 +12,8 @@
     transition-duration: 0.3s;
     transform: scale(1.05);
 }
-
 .user_container * {
     margin: 2px;
-}
-
-.user_full_name {
-    width: 100%;
-    overflow: auto;
-    display: flex;
-    justify-content: center;
 }
 .user_full_name a {
     text-decoration: none;

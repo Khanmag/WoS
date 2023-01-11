@@ -1,22 +1,30 @@
 import React from "react";
-import Header from "./Header";
 import {connect} from "react-redux";
 import {getAuthUserInfo, setAuthUser, userLogout} from "../../redux/authReducer";
+import st from "./Header.module.css";
+import Navbar from "../Navbar/Navbar";
+import defaultPhoto from "../../localImage/defaultUser.png";
+import {NavLink} from "react-router-dom";
 
 
-class HeaderContainer extends React.Component {
-    render() {
-        return <Header login={this.props.login}
-                       isAuth={this.props.isAuth}
-                       photo={this.props.photo}
-                       userLogout={this.props.userLogout}/>
-    }
+const Header = ({login, isAuth, userLogout, photo}) => {
+    return <header className={st.header_wrapper}>
+        <Navbar/>
+        <AuthBlock isAuth={isAuth} userLogout={userLogout} login={login} photo={photo}/>
+    </header>
+}
+
+const AuthBlock = ({isAuth, userLogout, login, photo}) => {
+    return <div className={st.auth_block}>
+        <img src={photo || defaultPhoto} alt={'user image'}/>
+        <span>{login || 'anonim'}</span>
+        {(isAuth) ? <button onClick={userLogout}>logout</button> : <NavLink to={'/login'}>Log In</NavLink>}
+    </div>
 }
 
 
 let mapStateToProps = (state) => {
     return {
-        id: state.authData.id,
         login: state.authData.login,
         email: state.authData.email,
         isAuth: state.authData.isAuth,
@@ -24,4 +32,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getAuthUserInfo, userLogout})(HeaderContainer)
+export default connect(mapStateToProps, {getAuthUserInfo, userLogout})(Header)

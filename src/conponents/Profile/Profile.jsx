@@ -7,7 +7,8 @@ import {updatePhoto} from "../../redux/profileReducer";
 const Profile = ({profileInfo, addNewPost, posts, status, updateStatus, isAuth, isOwner,
                      updatePhoto, saveProfileData}) => {
     return (
-        <div className={st.profile}>
+        // <div className={st.profile}>
+        <>
             <PersonalInfo profileInfo={profileInfo}
                           status={status}
                           updateStatus={updateStatus}
@@ -16,9 +17,10 @@ const Profile = ({profileInfo, addNewPost, posts, status, updateStatus, isAuth, 
                           isOwner={isOwner}
                           saveProfileData={saveProfileData}
             />
-            <PostCreator addNewPost={addNewPost}/>
-            <PostsAll posts={posts}/>
-        </div>
+            {/*<PostCreator addNewPost={addNewPost}/>*/}
+            {/*<PostsAll posts={posts}/>*/}
+        </>
+        // </div>
     )
 }
 

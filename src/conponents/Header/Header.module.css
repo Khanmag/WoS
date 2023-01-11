@@ -43,15 +43,16 @@
     grid-area: button;
 }
 
-.auth_block button:hover {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: rgba(255, 255, 255, 0.56);
-}
+/*.auth_block button:hover {*/
+/*    background-color: rgba(0, 0, 0, 0.6);*/
+/*    color: rgba(255, 255, 255, 0.56);*/
+/*}*/
 
-.auth_block a {
+.auth_block a, .auth_block button {
     background-color: rgba(255, 255, 255, 0.56);
     color: rgba(0, 0, 0, 0.6);
     text-decoration: none;
+    font-family: Comfortaa, serif;
     font-size: small;
     line-height: 95%;
     padding-top: 5%;
@@ -59,6 +60,7 @@
     border: none;
     border-radius: 5px;
     grid-area: button;
+    cursor: pointer;
 }
 
 

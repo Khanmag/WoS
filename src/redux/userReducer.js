@@ -13,6 +13,7 @@ let ENABLE_CURRENT_BUTTON = 'usersReducer/ENABLE_CURRENT_BUTTON'
 let initialState = {
     users: [],
     pageSize: 24,
+    isPageFetching: false,
     totalUsersCount: null,
     currentPage: 1,
     isFetchingProfile: false,
@@ -25,31 +26,21 @@ const userReducer = (state = initialState, action) => {
             return {...state, users: [...action.users].sort((p, n) => p.id - n.id)}
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.count}
+        //
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage}
+        //
         case TOGGLE_IS_FETCHING:
             return {...state, isFetchingProfile: !state.isFetchingProfile}
         case FOLLOW_ON_USER:
             return {
                 ...state,
                 users: updateObjPropInArray(state.users, 'id', action.userId, {followed: true}),
-                // users: state.users.map(item => {
-                //     if (item.id === action.userId) {
-                //         return {...item, followed: true}
-                //     }
-                //     return item
-                // }),
             }
         case UNFOLLOW_ON_USER:
             return {
                 ...state,
                 users: updateObjPropInArray(state.users, 'id', action.userId, {followed: false}),
-                // users: state.users.map(item => {
-                //     if (item.id === action.userId) {
-                //         return {...item, followed: false}
-                //     }
-                //     return item
-                // })
             }
         case DISABLE_CURRENT_BUTTON:
             return {...state, followingOnProcess: [...state.followingOnProcess, action.userId]}

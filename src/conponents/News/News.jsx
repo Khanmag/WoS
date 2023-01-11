@@ -1,7 +1,6 @@
+import Preloader from "../common/Preloader";
 
 const News = () => {
-    return (
-        <div>News</div>
-    )
+    return <Preloader />
 }
 export default News

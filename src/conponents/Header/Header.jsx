@@ -7,19 +7,20 @@ import defaultPhoto from '../../localImage/defaultUser.png'
 const Header = ({login, isAuth, userLogout, photo}) => {
     return (
         <header className={st.header_wrapper}>
+
             <Navbar/>
-            <div className={st.auth_block}>
-                <AuthBlock isAuth={isAuth} userLogout={userLogout} login={login} photo={photo}/>
-            </div>
+
+            <AuthBlock isAuth={isAuth} userLogout={userLogout} login={login} photo={photo}/>
+
         </header>
     )
 }
 export default Header
 
 const AuthBlock = ({isAuth, userLogout, login, photo}) => {
-    return <>
+    return <div className={st.auth_block}>
         <img src={photo || defaultPhoto} alt={'user image'}/>
         <span>{login || 'anonim'}</span>
-        {(isAuth) ? <a onClick={userLogout}>logout</a> : <NavLink to={'/login'}>Log In</NavLink>}
-    </>
+        {(isAuth) ? <button onClick={userLogout}>logout</button> : <NavLink to={'/login'}>Log In</NavLink>}
+    </div>
 }

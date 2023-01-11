@@ -1,0 +1,11 @@
+.preloader_block {
+    width: 100%;
+    height: 100%;
+    /*background-color: white;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.preloader_block img {
+    background: none;
+}
