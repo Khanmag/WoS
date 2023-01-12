@@ -7,25 +7,16 @@ import {BrowserRouter, HashRouter} from 'react-router-dom';
 import store from './redux/redux-store'
 import {Provider} from "react-redux";
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//     // <React.StrictMode>
-//     <BrowserRouter>
-//         <App state={state}/>
-//     </BrowserRouter>
-//     // </React.StrictMode>
-// );
-// window.state=state
 window.store = store
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let rerenderEntireTree = (state) => {
     root.render(
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <App/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 

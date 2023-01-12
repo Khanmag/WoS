@@ -11,6 +11,7 @@ import {appInitialize} from "./redux/appReducer";
 import Preloader from "./conponents/common/Preloader";
 import Settings from "./conponents/Settings/Settings";
 import ProfileContainer from "./conponents/Profile/ProfileContainer";
+import Music from './conponents/Music/Music';
 
 
 class App extends React.Component {
@@ -29,6 +30,7 @@ class App extends React.Component {
                         <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>
                         <Route path={'/users/:page?'} element={<UsersContainer/>}/>
                         <Route path={'/login'} element={<LoginContainer/>}/>
+                        <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings/:page?'} element={<Settings/>}/>
                         <Route path={'*'} element={<News/>}/>
                     </Routes>

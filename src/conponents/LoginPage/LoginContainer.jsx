@@ -1,18 +1,19 @@
-import {Field, Form} from 'react-final-form'
-import st from './LoginPage.module.css'
-import {connect} from "react-redux";
-import {Navigate} from "react-router-dom";
-import {EmailField, PasswordField, RememberMeCheckBox} from "../forForms/Fields";
-import {userLogin} from "../../redux/authReducer";
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import st from './Login.module.css'
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { userLogin } from "../../redux/authReducer";
+import { useState } from 'react';
 
-const LoginContainer = ({userLogin, isAuth, captchaURL}) => {
+const LoginContainer = ({ userLogin, isAuth, captchaURL }) => {
     if (isAuth) {
-        return <Navigate to={'/dialogs'}/>
+        return <Navigate to={'/dialogs'} />
     }
 
-    return <div>
-        <h1>Login</h1>
-        <LoginForm userLogin={userLogin} captchaURL={captchaURL}/>
+    return <div className={st.login_form_wrapper}>
+        <h2>Login</h2>
+        <LoginForm userLogin={userLogin} captchaURL={captchaURL} />
     </div>
 }
 
@@ -22,55 +23,54 @@ const mapStateToProps = (state) => {
         captchaURL: state.authData.captchaURL,
     }
 }
-export default connect(mapStateToProps, {userLogin})(LoginContainer)
+export default connect(mapStateToProps, { userLogin })(LoginContainer)
 
 
-// const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-// const onSubmit = async values => {
-//     await sleep(300)
-//     window.alert(JSON.stringify(values, 0, 2))
-// }
-const onSubmit = (values) => {
-    console.log(values)
-}
 
 
-const LoginForm = ({userLogin, captchaURL}) => {
+
+const LoginForm = ({ userLogin, captchaURL }) => {
+    let [formReady, setFormReady] = useState(false)
+    const onLoginSubmit = (values) => {
+        userLogin(values.email, values.password, values.rememberMe)
+    }
+    const validate = (values) => {
+        const errors = {}
+        if (!values.email) errors.email = 'Required';
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+            errors.email = 'Invalid email address';
+        }
+        if (Object.keys(errors).length) setFormReady(true)
+        else setFormReady(false)
+        return errors
+    }
     return (
-        <Form
-            onSubmit={(values) => {
-                userLogin(values.email, values.password, values.rememberMe, values.captcha)
-            }}
-            render={({handleSubmit, form, submitting, pristine, values}) => (
-                <form onSubmit={handleSubmit}>
-                    <EmailField />
-                    <PasswordField />
-                    <RememberMeCheckBox />
-                    {(captchaURL) && <img src={captchaURL} alt='captcha'/> }
-                    {(captchaURL) && <Field name='captcha' type="text">
-                        {({input, meta}) => (
-                            <div>
-                                <input {...input}  />
-                                {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
-                            </div>
-                        )}
-                    </Field>}
-                    <div className="buttons">
-                        <button type="submit" disabled={submitting}>
-                            Submit
-                        </button>
-                        <button
-                            type="button"
-                            onClick={form.reset}
-                            disabled={submitting || pristine}
-                        >
-                            Reset
-                        </button>
-                    </div>
-                    <pre>{JSON.stringify(values, 0, 2)}</pre>
-                </form>
-            )}
-        />
+        <Formik initialValues={{ email: '', password: '', rememberMe: true }}
+            // validationSchema={Yup.object({
+            //     email: Yup.string().email('Invalid email address').required('Required')
+            // })}
+            validate={validate}
+            onSubmit={onLoginSubmit}>
+                <Form className={st.login_form}>
+
+                    <LoginElement name='email' label='Email Address' />
+                    <LoginElement name='password' label='Password' type='password' />
+                    <LoginElement name='rememberMe' label='Remember me!' type="checkbox" className={st.checkbox}/>
+
+                    <button disabled={formReady} type="submit">Submit</button>
+
+                    {(captchaURL) && <p>Слишком много попыток. Доступ заблокирован</p>}
+                </Form>
+        </Formik>
     );
 }
 
+const LoginElement = ({ name, label, type, className}) => {
+    return (
+        <div className={st.login_element + ' ' + (className || null)}>
+            <label htmlFor={name}>{label}</label>
+            <Field name={name} type={type || 'input'} />
+            <ErrorMessage className={st.error_message} component='div' name={name} />
+        </div>
+    )
+}

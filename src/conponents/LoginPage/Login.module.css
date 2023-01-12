@@ -1,0 +1,72 @@
+.login_form_wrapper {
+    width: 100%;
+    /* background-color: white; */
+    max-width: min-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login_form_wrapper h2 {
+    background-color: rgba(128, 128, 128, 0.336);
+    color: aliceblue;
+    padding: 5px;
+    border-radius: 10px 10px 0 0 ;
+}
+.login_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login_form button {
+    background-color: aliceblue;
+    color: rgb(82, 81, 81);
+    border: 0;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: large;
+    font-family: Comfortaa, serif;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+.login_form button:disabled {
+    background-color: black;
+    cursor: not-allowed;
+}
+.login_form button:hover {
+    background-color: rgba(128, 128, 128, 0.336);
+    color: aliceblue;
+    border: 1px solid aliceblue;
+}
+.login_element {
+    margin: 10px 15px;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.336);
+    width: 100%;
+}
+.login_element input {
+    border: 0;
+    border-radius: 10px;
+    padding: 5px;
+}
+.login_element input:focus {
+    outline: none;
+    max-width: 100%;
+}
+.login_element label {
+    font-size: small;
+    color: aliceblue;
+    margin-bottom: 0;
+}
+.error_message {
+    font-size: small;
+    color: rgb(238, 87, 87);
+    padding: 5px;
+}
+.checkbox {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+}

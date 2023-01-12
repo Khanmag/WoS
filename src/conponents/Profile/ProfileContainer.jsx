@@ -21,9 +21,11 @@ const ProfileContainer = ({
         toggleIsFetching()
         if (!userId && isAuth) {
             id = authUserId
+        } else if (!userId && !isAuth)
+        if (id) {
+            getProfile(id)
+            getStatus(id)
         }
-        getProfile(id)
-        getStatus(id)
     }, [isAuth])
 
     return <>
