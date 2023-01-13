@@ -1,6 +1,6 @@
 import React from 'react'
 import st from './Header.module.css'
-import Navbar from "../Navbar/Navbar";
+import Navbar from "./Navbar";
 import {NavLink} from "react-router-dom";
 import defaultPhoto from '../../localImage/defaultUser.png'
 

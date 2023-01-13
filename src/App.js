@@ -1,5 +1,5 @@
 import st from './App.module.css'
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import React from 'react'
 import News from "./conponents/News/News";
 import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
@@ -25,7 +25,7 @@ class App extends React.Component {
                 <HeaderContainer/>
                 <div className={st.main}>
                     <Routes>
-                        <Route path={'/'} element={<ProfileContainer/>}/>
+                        <Route path={'/'} element={<Navigate to={'profile/'} replace/>}/>
                         <Route path={'/profile/:userId?'} element={<ProfileContainer/>}/>
                         <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>
                         <Route path={'/users/:page?'} element={<UsersContainer/>}/>
@@ -35,11 +35,11 @@ class App extends React.Component {
                         <Route path={'*'} element={<News/>}/>
                     </Routes>
                 </div>
-
             </div>
         );
     }
 }
+
 
 let mapStateToProps = (state) => ({
     initialized: state.app.initialized

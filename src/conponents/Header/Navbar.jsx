@@ -1,5 +1,5 @@
-import st from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
+import st from './Header.module.css'
 
 
 const navbarData = [

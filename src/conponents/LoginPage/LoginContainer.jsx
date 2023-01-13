@@ -1,14 +1,15 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
 import st from './Login.module.css'
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import { userLogin } from "../../redux/authReducer";
 import { useState } from 'react';
 
 const LoginContainer = ({ userLogin, isAuth, captchaURL }) => {
+    const navigate = useNavigate()
+    const goBack = () => navigate(-1)
     if (isAuth) {
-        return <Navigate to={'/dialogs'} />
+        goBack()
     }
 
     return <div className={st.login_form_wrapper}>
@@ -46,9 +47,6 @@ const LoginForm = ({ userLogin, captchaURL }) => {
     }
     return (
         <Formik initialValues={{ email: '', password: '', rememberMe: true }}
-            // validationSchema={Yup.object({
-            //     email: Yup.string().email('Invalid email address').required('Required')
-            // })}
             validate={validate}
             onSubmit={onLoginSubmit}>
                 <Form className={st.login_form}>
