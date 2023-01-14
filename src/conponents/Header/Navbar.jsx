@@ -7,8 +7,8 @@ const navbarData = [
     {name: "Dialogs", link: "/dialogs"},
     {name: "Users", link: "/users"},
     // {name: "Login", link: "/login"},
-    {name: "Music", link: "/music"},
-    {name: "Setting", link: "/settings"},
+    // {name: "Music", link: "/music"},
+    // {name: "Setting", link: "/settings"},
 ]
 const Navbar = () => {
     return <nav className={st.nav}>

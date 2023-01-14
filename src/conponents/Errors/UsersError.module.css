@@ -1,0 +1,17 @@
+.error_wrapper {
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 30px 10px 30px 50px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    margin: 0 auto;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.error_wrapper * {
+    background-color: rgb(255, 255, 255);
+    max-width: max-content;
+    padding: 5px;
+    border-radius: 10px;
+}

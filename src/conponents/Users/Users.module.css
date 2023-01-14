@@ -3,4 +3,31 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows:  1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+    margin: 0 auto;
+    max-width: max-content;
 }
+
+@media (max-width: 750px) {
+    .users_cards_wrapper {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    }
+}
+@media (max-width: 630px) {
+    .users_cards_wrapper {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+@media (max-width: 500px) {
+    .users_cards_wrapper {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media (max-width: 370px) {
+    .users_cards_wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+

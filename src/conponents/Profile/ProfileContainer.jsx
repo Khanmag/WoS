@@ -5,7 +5,7 @@ import {
     getProfile, setProfileInfo, getStatus, updateStatus, updatePhoto, saveProfileData,
 } from "../../redux/profileReducer";
 import Preloader from "../common/Preloader";
-import {Navigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {connect} from "react-redux";
 
 
@@ -15,13 +15,14 @@ const ProfileContainer = ({
                           }) => {
     const {userId} = useParams()
     const isOwner = () => !(userId && (userId !== authUserId));
+    const navigate = useNavigate()
 
     useEffect(() => {
         let id = userId
         toggleIsFetching()
         if (!userId && isAuth) {
             id = authUserId
-        } else if (!userId && !isAuth)
+        } else if (!userId && !isAuth) return  navigate('/login')
         if (id) {
             getProfile(id)
             getStatus(id)
@@ -29,7 +30,6 @@ const ProfileContainer = ({
     }, [isAuth])
 
     return <>
-        {(!userId && !isAuth) && <Navigate to={'/login'}/>}
         {
             (isFetchingProfile && profileInfo)
                 ? <Preloader/>

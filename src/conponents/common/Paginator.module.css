@@ -1,8 +1,7 @@
 .paginator_wrapper {
     padding-top: 10px;
-    display: grid;
-    grid-template-columns: 5fr 1fr 5fr 5fr 5fr 1fr 5fr;
-    width: 400px;
+    display: flex;
+    max-width: 400px;
     margin: 0 auto;
 }
 
@@ -13,18 +12,28 @@
     align-items: center;
 }
 
-.usual_link {
-    text-decoration: none;
+.usual_btn {
     color: white;
     padding: 5px;
+    margin: 5px;
     background-color: #9999d9;
+    border: none;
     border-radius: 50px;
-    min-width: 20px;
+    min-width: 25px;
     text-align: center;
+}
+.usual_btn:disabled {
+    opacity: 0.4;
 }
 
 .current_page {
     color: white;
     border-bottom: 2px solid white;
     border-bottom-left-radius: 0;
+}
+
+@media (max-width: 600px) {
+    .paginator_wrapper {
+        margin: 15px 60px 15px 5px;
+    }
 }

@@ -6,24 +6,24 @@ import Navbar from "./Navbar";
 import defaultPhoto from "../../localImage/defaultUser.png";
 import {NavLink} from "react-router-dom";
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai";
+import {toggleModalStatus} from "../../redux/appReducer";
 
 
-const Header = ({login, isAuth, userLogout, photo}) => {
-    const [isMenuOpen, setMenuOpen] = useState(false)
-    let styles = isMenuOpen ? `${st.active_header} ${st.header_wrapper}` : st.header_wrapper
+const Header = ({login, isAuth, userLogout, photo, isModalOpen, toggleModalStatus}) => {
+    const styles = isModalOpen ? `${st.active_header} ${st.header_wrapper}` : st.header_wrapper
     return <>
         <header className={styles}>
             <Navbar/>
             <AuthBlock isAuth={isAuth} userLogout={userLogout} login={login} photo={photo}/>
         </header>
-        <OpenMobileMenuButton isOpen={isMenuOpen} setOpenStatus={setMenuOpen}/>
+        <OpenMobileMenuButton isOpen={isModalOpen} setOpenStatus={toggleModalStatus}/>
     </>
 }
 
 const OpenMobileMenuButton = ({isOpen, setOpenStatus}) => {
     return (
         <button className={st.open_menu_button} onClick={() => {
-            setOpenStatus(!isOpen)
+            setOpenStatus()
         }}>
             {isOpen
                 ? <AiOutlineClose color='white' size={'30px'}/>
@@ -41,10 +41,11 @@ let mapStateToProps = (state) => {
         email: state.authData.email,
         isAuth: state.authData.isAuth,
         photo: state.authData.photos.small,
+        isModalOpen: state.app.isModalOpen,
     }
 }
 
-export default connect(mapStateToProps, {getAuthUserInfo, userLogout})(Header)
+export default connect(mapStateToProps, {getAuthUserInfo, userLogout, toggleModalStatus})(Header)
 
 const AuthBlock = ({isAuth, userLogout, login, photo}) => {
     return <div className={st.auth_block}>
