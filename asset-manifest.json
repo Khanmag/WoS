@@ -1,22 +1,28 @@
 {
   "files": {
-    "main.css": "/WayOfSamuraiSocialWeb/static/css/main.3f854a87.css",
-    "main.js": "/WayOfSamuraiSocialWeb/static/js/main.2c0cd682.js",
-    "static/js/787.2f7fd6f8.chunk.js": "/WayOfSamuraiSocialWeb/static/js/787.2f7fd6f8.chunk.js",
-    "static/media/sites-responsivos.png": "/WayOfSamuraiSocialWeb/static/media/sites-responsivos.3163fdf2beb42aba2085.png",
-    "static/media/defaultUser.png": "/WayOfSamuraiSocialWeb/static/media/defaultUser.25eba4ad1bc0bec0971e.png",
-    "static/media/instagram.png": "/WayOfSamuraiSocialWeb/static/media/instagram.75e0546a6b5abe4c0506.png",
-    "static/media/web.png": "/WayOfSamuraiSocialWeb/static/media/web.b2c514376e752719d541.png",
-    "static/media/vk.png": "/WayOfSamuraiSocialWeb/static/media/vk.1cb7b2087c8d83dd7160.png",
-    "static/media/github.png": "/WayOfSamuraiSocialWeb/static/media/github.05f6c17b8cd04c28456f.png",
-    "static/media/Ellipsis-1.8s-800px.svg": "/WayOfSamuraiSocialWeb/static/media/Ellipsis-1.8s-800px.ed326624b1cd62dada51efe7c77861dc.svg",
-    "index.html": "/WayOfSamuraiSocialWeb/index.html",
-    "main.3f854a87.css.map": "/WayOfSamuraiSocialWeb/static/css/main.3f854a87.css.map",
-    "main.2c0cd682.js.map": "/WayOfSamuraiSocialWeb/static/js/main.2c0cd682.js.map",
-    "787.2f7fd6f8.chunk.js.map": "/WayOfSamuraiSocialWeb/static/js/787.2f7fd6f8.chunk.js.map"
+    "main.css": "/WoS/static/css/main.69e56e02.css",
+    "main.js": "/WoS/static/js/main.349c5c3b.js",
+    "static/media/sites-responsivos.png": "/WoS/static/media/sites-responsivos.3163fdf2beb42aba2085.png",
+    "static/media/errorRobot.png": "/WoS/static/media/errorRobot.8c86cc43ce5190a6d9ce.png",
+    "static/media/email (1).png": "/WoS/static/media/email (1).a49e015815e3ac6d2bd3.png",
+    "static/media/whatsapp.png": "/WoS/static/media/whatsapp.c826b0165560636baf0b.png",
+    "static/media/defaultUser.png": "/WoS/static/media/defaultUser.25eba4ad1bc0bec0971e.png",
+    "static/media/telephone.png": "/WoS/static/media/telephone.fb244201058d6b0c101c.png",
+    "static/media/instagram.png": "/WoS/static/media/instagram.75e0546a6b5abe4c0506.png",
+    "static/media/web.png": "/WoS/static/media/web.b2c514376e752719d541.png",
+    "static/media/location.png": "/WoS/static/media/location.0ec7d6224445cb169723.png",
+    "static/media/vk.png": "/WoS/static/media/vk.1cb7b2087c8d83dd7160.png",
+    "static/media/telegram.png": "/WoS/static/media/telegram.9f245f3233b0faea9ffa.png",
+    "static/media/responsive.png": "/WoS/static/media/responsive.6139123b7277538ac19b.png",
+    "static/media/github.png": "/WoS/static/media/github.05f6c17b8cd04c28456f.png",
+    "static/media/linkedin.png": "/WoS/static/media/linkedin.f249b38224ca41a0b909.png",
+    "static/media/Ellipsis-1.8s-800px.svg": "/WoS/static/media/Ellipsis-1.8s-800px.ed326624b1cd62dada51efe7c77861dc.svg",
+    "index.html": "/WoS/index.html",
+    "main.69e56e02.css.map": "/WoS/static/css/main.69e56e02.css.map",
+    "main.349c5c3b.js.map": "/WoS/static/js/main.349c5c3b.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f854a87.css",
-    "static/js/main.2c0cd682.js"
+    "static/css/main.69e56e02.css",
+    "static/js/main.349c5c3b.js"
   ]
 }
